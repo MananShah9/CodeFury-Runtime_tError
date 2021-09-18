@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Welcome to AutomatedBooking</title>
-
+<link rel="stylesheet" href="../css/main.css">
 <style>
 body {
     background-image: linear-gradient(to right, #74c567, #28b487);
@@ -30,7 +30,7 @@ body {
     </div>
 
     <div class="container meeting-rooms">
-        <h2>Our Meeting Rooms</h2>
+        <h2 style="margin-top: 55px; text-align: center">Our Meeting Rooms</h2>
         <div class="row mt-5">
             <div class="col-lg-4 col-xs-6 col-sm-6">
                 <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">

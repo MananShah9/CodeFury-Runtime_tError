@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+
 <link rel="stylesheet" href="../css/organize.css">
 <title>Organize Meeting</title>
 </head>
@@ -21,23 +22,26 @@
 	            </div>
 	            <div class="col-lg-10 mt-5">
 		            <div>
-		            	<select required name="meetingType" id="meetingType" class="form-select" aria-label="Default select example">
+		            	<select onblur="validateMeetingType()" required name="meetingType" id="meetingType" class="form-select" aria-label="Default select example">
 		                    <option selected>Select the type of Meeting</option>
 		                    <option value="1">Business</option>
 		                    <option value="2">Casual</option>
 		                    <option value="3">Budget</option>
 	                	</select>
+	                	<span id="errorMeetingType"></span>
 		            </div>
 		             <div class="input-group mb-3 mt-4">
 	               		<div class="mb-3">
 	  						<label class="form-label"><h5>Title of the Meeting : </h5></label>
-	  						<input required name="meetingTitle" id="meetingTitle" type="text" class="form-control">
+	  						<input onblur="validateMeetingTitle()" required name="meetingTitle" id="meetingTitle" type="text" class="form-control">
+	  						<span id="errorMeetingTitle"></span>
 						</div>
 					</div>
 	               <div class="input-group mb-3 mt-4">
 	               		<div class="mb-3">
 	  						<label class="form-label"><h5>Meeting Date : </h5></label>
-	  						<input required name="meetingDate" id="meetingDate" type="date" class="form-control">
+	  						<input onblur="validateMeetingDate()" required name="meetingDate" id="meetingDate" type="date" class="form-control">
+	  						<span id="errorMeetingDate"></span>
 						</div>
 					</div>
 					<div class="row">
@@ -45,7 +49,7 @@
 							<div class="input-group mb-3 mt-3">
 			               		<div class="mb-3">
 			  						<label class="form-label"><h5>Start Time : </h5></label>
-			  						<input required id="startTime" name="startTime" type="time" class="form-control">
+			  						<input onblur="validateTime()" required id="startTime" name="startTime" type="time" class="form-control">
 								</div>
 							</div>
 						</div>
@@ -53,7 +57,7 @@
 							<div class="input-group mb-3 mt-3">
 			               		<div class="mb-3">
 			  						<label class="form-label"><h5>End Time : </h5></label>
-			  						<input required id="endTime" name="endTime" type="time" class="form-control">
+			  						<input onblur="validateTime()" required id="endTime" name="endTime" type="time" class="form-control">
 								</div>
 							</div>
 						</div>
@@ -61,7 +65,7 @@
 							<div class="input-group mb-3 mt-3">
 			               		<div class="mb-3">
 			  						<label class="form-label"><h5>Duration : </h5></label>
-			  						<input id="duration" name="duration" type="text" class="form-control" disabled> Minutes
+			  						<input onblur="validateDuration()" id="duration" name="duration" type="text" class="form-control" disabled> Minutes
 								</div>
 							</div>
 						</div>
@@ -70,7 +74,7 @@
 					<button  type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addMembersModal">
 					  Add Members
 					</button>
-					<button id="searchRooms" type="button" class="btn btn-dark" disabled="true">
+					<button id="searchRooms" type="button" class="btn btn-dark">
 					 Search Meeting Rooms
 					</button>
 					<!-- Modal -->

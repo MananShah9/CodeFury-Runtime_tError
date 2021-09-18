@@ -3,6 +3,7 @@
 	text-align: center;
 }
 
-input{
-	width: 100%;
+#errorMeetingTitle, #errorMeetingDate
+{
+	color: red;
 }
