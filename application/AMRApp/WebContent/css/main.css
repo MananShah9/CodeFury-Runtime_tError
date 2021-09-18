@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    padding: 1.1rem 1.5rem;
+    font-size: 1.3rem;
+
+.timeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-5deg);
+    transform: skewY(-5deg);
+    background-color: white;
+    height: 80vh;
+}
+
+.timeline-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 2rem;
+    transform: rotate(5deg);
+    transform: skewY(5deg);
+}
+
+.timeline-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 10%;
+    justify-content: center;
+}
+
+.initial {
+    font-size: 1.4rem;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 5rem;
+}
+
+.cover-info {
+    font-size: 1.3rem;
+}
+
+.timeline-image {
+    width: 30%;
+}
+
+.meeting-rooms{
+    margin-top: 55px;
+    text-align: center;
+}
+
+.meeting-rooms table{
+    margin-top: 25px;
+    width: 100%;
+}
+
+footer{
+    margin-top: 75px;
+    color: white;
+}
