@@ -50,6 +50,7 @@
 			               		<div class="mb-3">
 			  						<label class="form-label"><h5>Start Time : </h5></label>
 			  						<input onblur="validateTime()" required id="startTime" name="startTime" type="time" class="form-control">
+			  						<span id="timeError"></span>
 								</div>
 							</div>
 						</div>
@@ -58,14 +59,16 @@
 			               		<div class="mb-3">
 			  						<label class="form-label"><h5>End Time : </h5></label>
 			  						<input onblur="validateTime()" required id="endTime" name="endTime" type="time" class="form-control">
+			  						<span id="timeError"></span>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-2">
 							<div class="input-group mb-3 mt-3">
 			               		<div class="mb-3">
-			  						<label class="form-label"><h5>Duration : </h5></label>
-			  						<input onblur="validateDuration()" id="duration" name="duration" type="text" class="form-control" disabled> Minutes
+			  						<label class="form-label"><h5>Duration: </h5></label>
+			  						<br />
+			  						<span><b id="durationHrsMin"></b></span>
 								</div>
 							</div>
 						</div>
