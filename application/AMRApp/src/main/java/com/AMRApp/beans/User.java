@@ -9,20 +9,21 @@ public class User {
 	private String userPhone;
 	private int userCredits;
 	private String userRole;
-	
+	private String userPass;
 	//Non-parameterized constructor
 	public User() {
 		
 	}
 	
 	//intializing members
-	public User(int userId, String userName, String userEmail, String userPhone, int userCredits, String userRole) {
+	public User(int userId, String userName, String userEmail, String userPhone, int userCredits, String userRole,String userPass) {
 		this.userId = userId;
 		this.userName = userName;
 		this.userEmail = userEmail;
 		this.userPhone = userPhone;
 		this.userCredits = userCredits;
 		this.userRole = userRole;
+		this.userPass = userPass;
 	}
 	
 	//getter setters
@@ -54,6 +55,9 @@ public class User {
 		return userPhone;
 	}
 
+	public String getUserPass() {
+		return userPass;
+	}
 	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
@@ -74,18 +78,24 @@ public class User {
 		this.userRole = userRole;
 	}
 
+	public void setUserPass(String userPass) {
+		this.userPass = userPass;
+	}
 	//Overriding toString()
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPhone="
-				+ userPhone + ", userCredits=" + userCredits + ", userRole=" + userRole + "]";
+				+ userPhone + ", userCredits=" + userCredits + ", userRole=" + userRole + ", userPass=" + userPass
+				+ "]";
 	}
 
 	//Overriding equals() and hash code()
 	@Override
 	public int hashCode() {
-		return Objects.hash(userCredits, userEmail, userId, userName, userPhone, userRole);
+		return Objects.hash(userCredits, userEmail, userId, userName, userPass, userPhone, userRole);
 	}
+
+	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -97,9 +107,12 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return userCredits == other.userCredits && Objects.equals(userEmail, other.userEmail) && userId == other.userId
-				&& Objects.equals(userName, other.userName) && Objects.equals(userPhone, other.userPhone)
-				&& Objects.equals(userRole, other.userRole);
+				&& Objects.equals(userName, other.userName) && Objects.equals(userPass, other.userPass)
+				&& Objects.equals(userPhone, other.userPhone) && Objects.equals(userRole, other.userRole);
 	}
 
+	
+	
+	
   
 }
