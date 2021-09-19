@@ -1,4 +1,3 @@
-#Not complete file. Vani has to put a couple of queries
 
 CREATE TABLE Meeting(meetingId int PRIMARY KEY, meetingtitle varchar(60), organisedBy int, meetingDate varchar(20), startTime varchar(20), meetingmembers int,  meetingType varchar(30), , CONSTRAINT fk_oid FOREIGN KEY (organisedBy) REFERENCES User(userId),  CONSTRAINT fk_mid FOREIGN KEY (meetingmembers) REFERENCES MeetingsAndMembers(Id)));
 
