@@ -11,7 +11,7 @@ import com.AMRApp.utility.ConnectionManager;
 public class AdminEditRoomDaoImpl implements AdminEditRoomDaoInterface {
 
 	@Override
-	public int editRoom(MeetingRoom entity) {
+	public int editRoom(MeetingRoom room) {
 		// TODO Auto-generated method stub
 		PreparedStatement ps;
 		Connection con = null;
@@ -27,8 +27,8 @@ public class AdminEditRoomDaoImpl implements AdminEditRoomDaoInterface {
 
 			ps = con.prepareStatement("update MEETING_ROOM set seating_capacity = ? where unique_name = ?");
 
-			ps.setInt(1, entity.getRoomCapacity());
-			ps.setString(2, entity.getRoomName());
+			ps.setInt(1, room.getRoomCapacity());
+			ps.setString(2, room.getRoomName());
 
 			if (!(ps.executeUpdate() > 0)) {
 
@@ -41,7 +41,7 @@ public class AdminEditRoomDaoImpl implements AdminEditRoomDaoInterface {
 
 			ps = con.prepareStatement("delete from ROOM_AMENITIES where meeting_room_id = ?");
 
-			ps.setString(1, entity.getMeetingRoomType());
+			ps.setString(1, room.getRoomName());
 
 			if (!(ps.executeUpdate() > 0)) {
 
@@ -52,13 +52,13 @@ public class AdminEditRoomDaoImpl implements AdminEditRoomDaoInterface {
 
 			// insert new amenities
 
-			for (String temp : entity.getRoomAmenities()) {
+			for (String temp : room.getRoomAmenities()) {
 
 				// prepare query to enter data into ROOM AMENITIES database
 
 				ps = con.prepareStatement("insert into ROOM_AMENITIES values (?, ?)");
 
-				ps.setString(1, entity.getRoomName());
+				ps.setString(1, room.getRoomName());
 				ps.setString(2, temp);
 
 				if (!(ps.executeUpdate() > 0)) {
@@ -71,12 +71,12 @@ public class AdminEditRoomDaoImpl implements AdminEditRoomDaoInterface {
 
 			// get cost from table for new amenities
 
-			int size = entity.getRoomAmenities().size();
+			int size = room.getRoomAmenities().size();
 			size--;
 
 			String query = "select SUM(credit) from amenities where ";
 
-			for (String temp : entity.getRoomAmenities()) {
+			for (String temp : room.getRoomAmenities()) {
 
 				query = query + "id = " + temp;
 
@@ -102,11 +102,11 @@ public class AdminEditRoomDaoImpl implements AdminEditRoomDaoInterface {
 				return 0;
 			}
 
-			if (entity.getRoomCapacity() > 5 && entity.getRoomCapacity() <= 10) {
+			if (room.getRoomCapacity() > 5 && room.getRoomCapacity() <= 10) {
 
 				per_hour_cost += 10;
 
-			} else if (entity.getRoomCapacity() > 10) {
+			} else if (room.getRoomCapacity() > 10) {
 
 				per_hour_cost += 20;
 			}
@@ -114,7 +114,7 @@ public class AdminEditRoomDaoImpl implements AdminEditRoomDaoInterface {
 			// prepare query to enter data into ROOM AMENITIES database
 
 			ps = con.prepareStatement("update MEETING_ROOM set per_hour_cost = " + per_hour_cost
-					+ "  where unique_name = '" + entity.getRoomName() + "'");
+					+ "  where unique_name = '" + room.getRoomName() + "'");
 
 			if (ps.executeUpdate() > 0) {
 
