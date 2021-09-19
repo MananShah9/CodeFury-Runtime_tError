@@ -18,7 +18,7 @@ public class ConnectionManager {
 
 			Class.forName("com.mysql.jdbc.Driver");
 
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db1", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project_db", "root", "password");
 			return con;
 		} catch (SQLException | ClassNotFoundException e) {
 
