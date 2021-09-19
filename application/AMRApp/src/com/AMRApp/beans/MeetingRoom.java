@@ -7,6 +7,9 @@ public class MeetingRoom {
 	private int roomRating;
 	private List<String> roomAmenities;
 	private int roomPerHourCost;
+	private String meetingRoomType;
+	private int totalMeetings;
+	private String organiser;
 	
 	//non-parameterized constructor
 	public MeetingRoom() {
@@ -15,12 +18,15 @@ public class MeetingRoom {
 
 	//initializing members
 	public MeetingRoom(String roomName, int roomCapacity, int roomRating, List<String> roomAmenities,
-			int roomPerHourCost) {
+			int roomPerHourCost, String meetingRoomType, int totalMeetings, String organiser) {
 		this.roomName = roomName;
 		this.roomCapacity = roomCapacity;
 		this.roomRating = roomRating;
 		this.roomAmenities = roomAmenities;
 		this.roomPerHourCost = roomPerHourCost;
+		this.meetingRoomType = meetingRoomType;
+		this.totalMeetings = totalMeetings;
+		this.organiser=organiser;
 	}
 
 	//getters and setters
@@ -64,17 +70,44 @@ public class MeetingRoom {
 		this.roomPerHourCost = roomPerHourCost;
 	}
 
+	public String getMeetingRoomType() {
+		return meetingRoomType;
+	}
+
+	public void setMeetingRoomType(String meetingRoomType) {
+		this.meetingRoomType = meetingRoomType;
+	}
+
+	public int getTotalMeetings() {
+		return totalMeetings;
+	}
+
+	public void setTotalMeetings(int totalMeetings) {
+		this.totalMeetings = totalMeetings;
+	}
+	
+	public String getOrganiser() {
+		return organiser;
+	}
+
+	public void setOrganiser(String organiser) {
+		this.organiser = organiser;
+	}
+
 	//overriding toString()
 	@Override
 	public String toString() {
 		return "MeetingRoom [roomName=" + roomName + ", roomCapacity=" + roomCapacity + ", roomRating=" + roomRating
-				+ ", roomAmenities=" + roomAmenities + ", roomPerHourCost=" + roomPerHourCost + "]";
+				+ ", roomAmenities=" + roomAmenities + ", roomPerHourCost=" + roomPerHourCost + ", meetingRoomType="
+				+ meetingRoomType + ", totalMeetings=" + totalMeetings + ", organiser=" + organiser + "]";
 	}
 
 	//overriding hashcode() and equals() method
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(roomAmenities, roomCapacity, roomName, roomPerHourCost, roomRating);
+		return Objects.hash(meetingRoomType, organiser, roomAmenities, roomCapacity, roomName, roomPerHourCost,
+				roomRating, totalMeetings);
 	}
 
 	@Override
@@ -86,10 +119,14 @@ public class MeetingRoom {
 		if (getClass() != obj.getClass())
 			return false;
 		MeetingRoom other = (MeetingRoom) obj;
-		return Objects.equals(roomAmenities, other.roomAmenities) && roomCapacity == other.roomCapacity
+		return Objects.equals(meetingRoomType, other.meetingRoomType) && Objects.equals(organiser, other.organiser)
+				&& Objects.equals(roomAmenities, other.roomAmenities) && roomCapacity == other.roomCapacity
 				&& Objects.equals(roomName, other.roomName) && roomPerHourCost == other.roomPerHourCost
-				&& roomRating == other.roomRating;
+				&& roomRating == other.roomRating && totalMeetings == other.totalMeetings;
 	}
+
+
+
 	
 	
-}
+	}
