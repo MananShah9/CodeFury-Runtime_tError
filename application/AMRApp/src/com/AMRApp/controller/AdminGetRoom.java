@@ -60,7 +60,7 @@ public class AdminGetRoom extends HttpServlet {
 			
 			AdminGetRoomServiceInterface service = AdminGetRoomFactory.createServiceObject();
 			
-			if ( service.editRoom ( room ) == 1 ) {
+			if ( service.getRoom ( room ) == 1 ) {
 				
 				String errorMessage = "<div class='alert alert-success alert-dismissible fade in'>" +
 						"<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
@@ -85,11 +85,11 @@ public class AdminGetRoom extends HttpServlet {
 		}
 		catch (ServletException | IOException e) {
 			
-			LOGR.error(e.toString());
+			e.printStackTrace();
 		}
 		catch (Exception e) {
 			
-			LOGR.error("Unhandled Exception: " + e);
+			e.printStackTrace();
 		}
 	}
 }
