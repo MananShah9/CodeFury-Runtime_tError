@@ -34,7 +34,10 @@ public class AdminGetRoomDaoImpl implements AdminGetRoomDaoInterface {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-		}		
+		}
+		 catch (Exception e) {
+			e.printStackTrace();
+		}
 		finally {
 			
 			ConnectionManager.closeConnection();
