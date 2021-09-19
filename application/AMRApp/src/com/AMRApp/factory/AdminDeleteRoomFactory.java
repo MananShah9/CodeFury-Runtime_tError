@@ -13,7 +13,7 @@ public class AdminDeleteRoomFactory {
 
 	public static AdminDeleteRoomDaoInterface createDaoObject() {
 		// TODO Auto-generated method stub
-		return new AdminDeleteRaoomDaoImpl();
+		return new AdminDeleteRoomDaoImpl();
 	}
 
 }
