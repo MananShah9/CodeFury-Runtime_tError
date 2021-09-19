@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.AMRApp.beans.MeetingRoom;
 import com.AMRApp.factory.AdminCreateRoomFactory;
-import com.AMRApp.service.AdminCreateRoomInterface;
 import com.AMRApp.service.AdminCreateRoomServiceInterface;
 
 @WebServlet("/AdminCreateRoom")
