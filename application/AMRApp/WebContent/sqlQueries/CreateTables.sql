@@ -9,3 +9,7 @@ CREATE TABLE Amenities(amenityId int PRIMARY KEY,projector int, wifi int, conCal
 CREATE TABLE MeetingRoom(meetingName varchar(60) PRIMARY KEY, seatingCapacity int, ratings int, amenitiesAvail int , perHourCost int, CONSTRAINT fk_aid FOREIGN KEY (amenitiesAvail) REFERENCES Amenities(amenityId) );
 
 CREATE TABLE CreditsAvailable(id int, managerId int, CONSTRAINT fk_cid FOREIGN KEY(managerID) REFERENCES User(userId));
+
+CREATE TABLE User(userId int PRIMARY KEY,userName varchar(30),userEmail varchar(50),userPhone varchar(30),userCredits int,userRole varchar(10),userPass varchar(20),CONSTRAINT fk_uCredits FOREIGN KEY (userCredits) REFERENCES CreditsAvailable(id));
+	
+CREATE TABLE BookingInfo(bookingId int PRIMARY KEY,meetingRoomName varchar(20),bookingDate varchar(20),startTime varchar(20),endTime varchar(20),organiserId int,CONSTRAINT fk_oId FOREIGN KEY (organiserId) REFERENCES User(userId),CONSTRAINT fk_meetRoomName FOREIGN KEY (meetingRoomName) REFERENCES MeetingRoom(roomName));
