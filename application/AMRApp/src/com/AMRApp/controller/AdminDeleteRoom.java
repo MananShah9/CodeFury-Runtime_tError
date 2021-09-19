@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.AMRApp.factory.AdminDeleteRoomFactory;
-import com.AMRApp.service.AdminCreateRoomInterface;
 import com.AMRApp.service.AdminDeleteRoomServiceInterface;
 
 @WebServlet("/AdminDeleteRoom")
