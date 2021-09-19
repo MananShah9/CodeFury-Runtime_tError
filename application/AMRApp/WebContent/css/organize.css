@@ -3,7 +3,7 @@
 	text-align: center;
 }
 
-#errorMeetingTitle, #errorMeetingDate
+#errorMeetingTitle, #errorMeetingDate, #timeError
 {
 	color: red;
 }
