@@ -3,6 +3,7 @@ package com.AMRApp.factory;
 import com.AMRApp.dao.AdminDeleteRoomDaoInterface;
 import com.AMRApp.service.AdminDeleteRoomServiceImpl;
 import com.AMRApp.service.AdminDeleteRoomServiceInterface;
+import com.AMRApp.dao.AdminDeleteRoomDaoImpl;
 
 public class AdminDeleteRoomFactory {
 
