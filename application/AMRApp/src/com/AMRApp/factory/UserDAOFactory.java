@@ -6,7 +6,7 @@ import com.AMRApp.dao.UserDAOInterface;
 public class UserDAOFactory {
 
 	public static UserDAOInterface createObject() {
-		// TODO Auto-generated method stub
+		
 		return new UserDAO ();
 	}
 

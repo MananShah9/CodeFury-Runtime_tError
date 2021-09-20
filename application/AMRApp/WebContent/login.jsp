@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="com.AMRApp.controller.LoginServlet"%>
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,19 +25,19 @@
 
                 </div>
                 <div class="col-lg-8">
-                    <form>
+                    <form method="POST" action="LoginServlet">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="fa fa-user"></i>
                             </span>
-                            <input required name="username" type="text" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" onblur="validateUsername()">
+                            <input required name="userId" type="text" id="user_id" class="form-control" placeholder="UserID" aria-label="Username" aria-describedby="basic-addon1" onblur="validateUsername()">
                             <span id="errorUsername"></span>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="fa fa-eye-slash"></i>
                             </span>
-                            <input required name="password" type="password" id="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" onblur="validatePassword()">
+                            <input required name="userPass" type="password" id="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" onblur="validatePassword()">
                             <span id="errorPassword"></span>
                         </div>
                         <button type="submit" class="btn btn-dark btn btn-lg login-button">LOGIN</button>

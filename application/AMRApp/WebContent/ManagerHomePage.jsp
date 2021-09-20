@@ -87,10 +87,8 @@
 	<%@ page import="java.sql.Connection"%>
 
 	<%
-		String userId=(String)session.getAttribute("user_id");
-			//User u=new User();
-			//u.setUserId(userId);
-			int uid=Integer.parseInt(userId);
+			int userId=(int)session.getAttribute("userId");
+			
 			//MeetingRoomsServiceInterface s=MeetingServiceFactory.createObject("admin service");
 		//	User user=s.managerInfoService(u);
 			
@@ -141,9 +139,9 @@
 				<%
 	// getting the details of scheduled meetings
 	
-	
+		System.out.println(userId);
 		
-		List<Meeting> listOfMeetings= s.listManagerMeeting(uid);
+		List<Meeting> listOfMeetings= s.listManagerMeeting(userId);
 	
 		for(Meeting m : listOfMeetings) {
 %>

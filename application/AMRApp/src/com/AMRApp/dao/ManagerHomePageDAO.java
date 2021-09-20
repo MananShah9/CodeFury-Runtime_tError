@@ -21,7 +21,7 @@ public class ManagerHomePageDAO implements ManagerHomePageDAOInterface {
 		try {
 			con = ConnectionManager.getConnection();
 			pList=con.prepareStatement("select m.meetingId, m.meetingtitle, m.meetingDate, m.startTime, m.endTime, m.meetingType from Meeting m where m.organisedBy=?");
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -31,11 +31,11 @@ public class ManagerHomePageDAO implements ManagerHomePageDAOInterface {
     }
 	
 	@Override
-	public List<Meeting> getScheduledMeetings(int user) {
+	public List<Meeting> getScheduledMeetings(int userId) {
 		List<Meeting> mlist= new ArrayList();
 		try {
 			Meeting m=null;
-			pList.setInt(1, user);
+			pList.setInt(1, userId);
 			ResultSet rs=pList.executeQuery();
 			while(rs.next())
 			{

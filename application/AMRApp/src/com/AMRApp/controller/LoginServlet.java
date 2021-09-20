@@ -1,6 +1,8 @@
 package com.AMRApp.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,10 +44,10 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		try {
-
+			
 			User user = UserFactory.createObject ();		
-			user.setUserId(Integer.parseInt(( request.getParameter ( "user_id" ) ))); // Getting User Credentials
-			user.setUserPass( request.getParameter ( "user_password" ) );
+			user.setUserId(Integer.parseInt(( request.getParameter ( "userId" ) ))); // Getting User Credentials
+			user.setUserPass( request.getParameter ( "userPass" ) );
 			
 			UserServiceInterface login_object = UserServiceFactory.createObject ();
 			
@@ -55,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 				
 				HttpSession session = request.getSession (); //Creating Session
 								
-				session.setAttribute ( "user_id", user.getUserId());
+				session.setAttribute ( "userId", user.getUserId());
 				session.setAttribute ( "name", user.getUserName());
 				
 				session.setAttribute ( "email", user.getUserEmail());
@@ -63,20 +65,23 @@ public class LoginServlet extends HttpServlet {
 				
 				session.setAttribute ( "role", user.getUserRole());
 				
-				
-				if ( user.getUserRole().equals ( "member" ) ) {
+				System.out.println(user.getUserRole());
+
+				if ( user.getUserRole().equals ( "Member" ) ) {
 					
 					request.getRequestDispatcher("member.jsp").forward ( request, response );
 					
-				} else if ( user.getUserRole().equals ( "admin" ) ) {
+				} else if ( user.getUserRole().equals ( "Admin" ) ) {
 					
 					request.getRequestDispatcher("AdminHomePage.jsp").forward ( request, response );
 					
 				} else {
 					
-					login_object.manageCredits(user.getUserId());
+					//login_object.manageCredits(user.getUserId());
 					
-					request.getRequestDispatcher("ManagerHomePage.jsp").forward ( request, response );
+					RequestDispatcher rd=request.getRequestDispatcher("ManagerHomePage.jsp");
+					rd.forward(request, response);
+
 				}
 				
 			} else {	// if user does not exists redirect to login page

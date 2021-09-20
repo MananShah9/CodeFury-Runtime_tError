@@ -15,15 +15,10 @@ public class UserDAO implements UserDAOInterface {
 	private Connection con;
 
 	public UserDAO() {
-
 		try {
-
-			// get connection to database
-
-			con = ConnectionManager.getConnection();
-
-		} catch (SQLException | ClassNotFoundException e) {
-
+		con = ConnectionManager.getConnection();
+		}catch(Exception e)
+		{
 			System.out.println(e);
 		}
 
@@ -36,7 +31,7 @@ public class UserDAO implements UserDAOInterface {
 
 			// prepare query
 
-			PreparedStatement ps = con.prepareStatement("select * from users where USER_ID = ? and PASSWORD = ?");
+			PreparedStatement ps = con.prepareStatement("select * from user where userId = ? and userPass = ?");
 
 			ps.setInt(1, user.getUserId());
 			ps.setString(2, user.getUserPass());
@@ -48,12 +43,12 @@ public class UserDAO implements UserDAOInterface {
 
 				user.setUserId(rs.getInt(1));
 
-				user.setUserName(rs.getString(3));
-				user.setUserEmail(rs.getString(4));
+				user.setUserName(rs.getString(2));
+				user.setUserEmail(rs.getString(3));
 
-				user.setUserPhone(rs.getString(5));
-				user.setUserRole(rs.getString(7));
-
+				user.setUserPhone(rs.getString(4));
+				user.setUserRole(rs.getString(5));
+				user.setUserCredits(rs.getInt(7));
 				return user;
 			}
 

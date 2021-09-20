@@ -15,13 +15,17 @@ public class ManagerHomePageService implements ManagerHomePageServiceInterface {
 	{
 		//Factory obj= new Factory();
 		//obj.getManagerDaoInstance();
+		
 		mdao= new ManagerHomePageDAO();
+		
 		
 	}
 
 	@Override
-	public List<Meeting> listManagerMeeting(int user) {
-		return mdao.getScheduledMeetings(user);
+	public List<Meeting> listManagerMeeting(int userId) {
+		System.out.println(userId);
+		return mdao.getScheduledMeetings(userId);
+		
 	}
 
 }

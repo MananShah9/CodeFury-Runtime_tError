@@ -123,7 +123,7 @@ public class AdminEditRoomDaoImpl implements AdminEditRoomDaoInterface {
 				return 1; // return on success
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 
 			e.printStackTrace();
 		} finally {

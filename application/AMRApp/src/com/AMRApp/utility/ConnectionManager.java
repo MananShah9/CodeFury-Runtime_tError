@@ -4,38 +4,40 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class ConnectionManager {
-
-	private static Connection con;
-
-	private ConnectionManager() { // Constructor
-
-	}
-
-	public static Connection getConnection() throws SQLException, ClassNotFoundException {
-
+	
+	
+	//singleton pattern
+	private static Connection conn;
+	
+	public static Connection getConnection() {
 		try {
-
-			Class.forName("com.mysql.jdbc.Driver");
-
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project_db", "root", "password");
-			return con;
-		} catch (SQLException | ClassNotFoundException e) {
-
-			throw e;
+		if(conn==null) {
+			String url="jdbc:mysql://localhost:3306/project_db?useSSL=false";
+			String username="root";
+			String password="password";
+			System.out.println("Yha error aari hai");
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			System.out.println("Neeche error aara h");
+			conn=DriverManager.getConnection(url,username,password);
+		}	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return conn;
 	}
-
+	
 	public static void closeConnection() {
-		// TODO Auto-generated method stub
-		try {
-			con.close();
-		}
-		catch (SQLException e) {
-			
-			System.out.println(e);
-		}
 		
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
 
 }
