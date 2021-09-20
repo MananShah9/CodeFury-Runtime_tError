@@ -1,4 +1,8 @@
 
+
+CREATE TABLE User(userId int PRIMARY KEY AUTO_GENERATE,userName varchar(30),userEmail varchar(50),
+	userPhone varchar(30),userRole varchar(10),userCredits int default 0, userPass varchar(20));
+
 CREATE TABLE Meeting(meetingId int PRIMARY KEY AUTO_INCREMENT, meetingtitle varchar(60), organisedBy int, meetingDate varchar(20), 
 	startTime varchar(20), endTime varchar(20),  meetingType varchar(30),
 	 CONSTRAINT fk_oid FOREIGN KEY (organisedBy) REFERENCES User(userId) ON DELETE CASCADE);
@@ -7,17 +11,11 @@ CREATE TABLE MeetingsAndMembers(id int PRIMARY KEY AUTO_INCREMENT, meetingId int
  CONSTRAINT fk_meetingid FOREIGN KEY (meetingId) REFERENCES Meeting(meetingId) ON DELETE CASCADE,
   CONSTRAINT fk_memid FOREIGN KEY (memberId) REFERENCES User(userId) ON DELETE CASCADE );
 
-CREATE TABLE Amenities(amenityId int PRIMARY KEY AUTO_INCREMENT,projector int, wifi int, conCall int, whiteboard int, waterDispenser int, TV int, Coffee int);
-
 CREATE TABLE MeetingRoom(meetingName varchar(60) PRIMARY KEY, seatingCapacity int, ratings int, amenitiesAvail int , 
 	perHourCost int, CONSTRAINT fk_aid FOREIGN KEY (amenitiesAvail) REFERENCES Amenities(amenityId) ON DELETE CASCADE);
 
-CREATE TABLE CreditsAvailable(id int  PRIMARY KEY AUTO_INCREMENT,
- managerId int, credits int, CONSTRAINT fk_cid FOREIGN KEY(managerID) REFERENCES User(userId) ON DELETE CASCADE);
+CREATE TABLE Amenities(amenityId int PRIMARY KEY AUTO_INCREMENT,projector int, wifi int, conCall int, whiteboard int, waterDispenser int, TV int, Coffee int);
 
-CREATE TABLE User(userId int PRIMARY KEY ,userName varchar(30),userEmail varchar(50),
-	userPhone varchar(30),userRole varchar(10),userPass varchar(20));
-	
 CREATE TABLE BookingInfo(bookingId int PRIMARY KEY AUTO_INCREMENT,
 	meetingRoomName varchar(20),bookingDate varchar(20),startTime varchar(20),
 	endTime varchar(20),organiserId int,CONSTRAINT fk_orgId FOREIGN KEY (organiserId) REFERENCES User(userId) ON DELETE CASCADE,
@@ -26,8 +24,8 @@ CREATE TABLE BookingInfo(bookingId int PRIMARY KEY AUTO_INCREMENT,
 CREATE TABLE Feedback (
 id int primary key AUTO_INCREMENT,
 meetingRoomId varchar (30),
-userId varchar (50),
+userId int(50),
 rating int default 0,
 foreign key (userId) references User(userId) ON DELETE CASCADE,
-foreign key (meetingRoomId) references MeetingRoom(unique_name) ON DELETE CASCADE
+foreign key (meetingRoomId) references MeetingRoom(meetingName) ON DELETE CASCADE
 );
