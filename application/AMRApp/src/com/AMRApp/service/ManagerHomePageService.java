@@ -4,18 +4,18 @@ import java.util.List;
 
 import com.AMRApp.beans.Meeting;
 import com.AMRApp.beans.User;
-import com.AMRApp.dao.ManagerDAO;
-import com.AMRApp.dao.ManagerDAOInterface;
+import com.AMRApp.dao.ManagerHomePageDAO;
+import com.AMRApp.dao.ManagerHomePageDAOInterface;
 import com.AMRApp.factory.Factory;
 
-public class ManagerService implements ManagerServiceInterface {
+public class ManagerHomePageService implements ManagerHomePageServiceInterface {
 
-	ManagerDAOInterface mdao= null;
-	public ManagerService()
+	ManagerHomePageDAOInterface mdao= null;
+	public ManagerHomePageService()
 	{
 		//Factory obj= new Factory();
 		//obj.getManagerDaoInstance();
-		mdao= new ManagerDAO();
+		mdao= new ManagerHomePageDAO();
 		
 	}
 
@@ -24,9 +24,4 @@ public class ManagerService implements ManagerServiceInterface {
 		return mdao.getScheduledMeetings(user);
 	}
 
-	@Override
-	public User managerInformation(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

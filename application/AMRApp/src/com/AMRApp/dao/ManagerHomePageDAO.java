@@ -11,7 +11,7 @@ import com.AMRApp.beans.Meeting;
 import com.AMRApp.beans.User;
 import com.AMRApp.utility.ConnectionManager;
 
-public class ManagerDAO implements ManagerDAOInterface {
+public class ManagerHomePageDAO implements ManagerHomePageDAOInterface {
 
 	static PreparedStatement pList;
 	static Connection con;

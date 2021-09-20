@@ -86,18 +86,18 @@
 	<%@ page import="java.util.*"%>
 	<%@ page import="java.sql.Connection"%>
 
-	<% 	String userId=(String)session.getAttribute("user_id");
-	//User u=new User();
-	//u.setUserId(userId);
-	int uid=Integer.parseInt(userId);
-	//MeetingRoomsServiceInterface s=MeetingServiceFactory.createObject("admin service");
-//	User user=s.managerInfoService(u);
-	
-	//LogServiceInterface ls=LogServiceFactory.createObject();
-	//Time t=ls.displayLastLoginService(u);
-	ManagerServiceInterface s=new ManagerService();
-	 //user=s.listManagerMeeting(u);
-	
+	<%
+		String userId=(String)session.getAttribute("user_id");
+			//User u=new User();
+			//u.setUserId(userId);
+			int uid=Integer.parseInt(userId);
+			//MeetingRoomsServiceInterface s=MeetingServiceFactory.createObject("admin service");
+		//	User user=s.managerInfoService(u);
+			
+			//LogServiceInterface ls=LogServiceFactory.createObject();
+			//Time t=ls.displayLastLoginService(u);
+			ManagerHomePageServiceInterface s=new ManagerHomePageService();
+			 //user=s.listManagerMeeting(u);
 	%>
 
 
