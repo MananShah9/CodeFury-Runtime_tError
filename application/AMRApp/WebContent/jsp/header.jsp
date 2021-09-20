@@ -26,7 +26,7 @@
                         <a class="nav-link active" aria-current="page" href="home.jsp">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">IMPORT USERS</a>
+                        <a class="nav-link" href="importUsers.jsp">IMPORT USERS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.jsp">LOGIN</a>
