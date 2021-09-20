@@ -6,6 +6,11 @@
 <meta charset="ISO-8859-1">
 
 <link rel="stylesheet" href="../css/organize.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css">
 <title>Organize Meeting</title>
 </head>
 <body>
@@ -89,7 +94,13 @@
 					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					      </div>
 					      <div class="modal-body">
-					        ...
+					      	<select required name="members" id="members" class="form-select" aria-label="Default select example" multiple="true">
+			                    <option selected>Add Members to Meeting</option>
+			                    <option value="1">Kanika Bagri</option>
+			                    <option value="2">Manan Shah</option>
+			                    <option value="3">Kanishka</option>
+			                    <option value="4">Ananya Dwivedi</option>
+	                		</select>
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -111,5 +122,10 @@
     </form>
 	<jsp:include page="footer.jsp"/>
 	<script src="../js/validate.js" type="text/javascript"></script>
+	<script type="text/javascript">
+$(function() {
+    $(".members").chosen();
+});
+</script>
 </body>
 </html>
