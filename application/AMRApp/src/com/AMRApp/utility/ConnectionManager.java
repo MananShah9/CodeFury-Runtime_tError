@@ -16,7 +16,7 @@ public class ConnectionManager {
 		if(conn==null) {
 			String url="jdbc:mysql://localhost:3306/project_db?useSSL=false";
 			String username="root";
-			String password="password";
+			String password="root";
 			System.out.println("Yha error aari hai");
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			System.out.println("Neeche error aara h");
@@ -31,12 +31,12 @@ public class ConnectionManager {
 	
 	public static void closeConnection() {
 		
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			conn.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 

@@ -1,7 +1,6 @@
 
 
-CREATE TABLE User(userId int PRIMARY KEY AUTO_GENERATE,userName varchar(30),userEmail varchar(50),
-	userPhone varchar(30),userRole varchar(10),userCredits int default 0, userPass varchar(20));
+CREATE TABLE User(userId int PRIMARY KEY ,userName varchar(30),userEmail varchar(50),	userPhone varchar(30),userRole varchar(10),userCredits int default 0, userPass varchar(20));
 
 CREATE TABLE Meeting(meetingId int PRIMARY KEY AUTO_INCREMENT, meetingtitle varchar(60), organisedBy int, meetingDate varchar(20), 
 	startTime varchar(20), endTime varchar(20),  meetingType varchar(30),
@@ -11,10 +10,12 @@ CREATE TABLE MeetingsAndMembers(id int PRIMARY KEY AUTO_INCREMENT, meetingId int
  CONSTRAINT fk_meetingid FOREIGN KEY (meetingId) REFERENCES Meeting(meetingId) ON DELETE CASCADE,
   CONSTRAINT fk_memid FOREIGN KEY (memberId) REFERENCES User(userId) ON DELETE CASCADE );
 
+
+CREATE TABLE Amenities(amenityId int PRIMARY KEY AUTO_INCREMENT,projector int, wifi int, conCall int, whiteboard int, waterDispenser int, TV int, Coffee int);
+
 CREATE TABLE MeetingRoom(meetingName varchar(60) PRIMARY KEY, seatingCapacity int, ratings int, amenitiesAvail int , 
 	perHourCost int, CONSTRAINT fk_aid FOREIGN KEY (amenitiesAvail) REFERENCES Amenities(amenityId) ON DELETE CASCADE);
 
-CREATE TABLE Amenities(amenityId int PRIMARY KEY AUTO_INCREMENT,projector int, wifi int, conCall int, whiteboard int, waterDispenser int, TV int, Coffee int);
 
 CREATE TABLE BookingInfo(bookingId int PRIMARY KEY AUTO_INCREMENT,
 	meetingRoomName varchar(20),bookingDate varchar(20),startTime varchar(20),

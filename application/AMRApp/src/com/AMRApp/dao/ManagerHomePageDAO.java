@@ -15,28 +15,21 @@ public class ManagerHomePageDAO implements ManagerHomePageDAOInterface {
 
 	static PreparedStatement pList;
 	static Connection con;
-	//Connection con= ConnectionManager.getConnection();
-    static {
-    	
-		try {
-			con = ConnectionManager.getConnection();
-			pList=con.prepareStatement("select m.meetingId, m.meetingtitle, m.meetingDate, m.startTime, m.endTime, m.meetingType from Meeting m where m.organisedBy=?");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	
-    	
-    }
+	
 	
 	@Override
 	public List<Meeting> getScheduledMeetings(int userId) {
 		List<Meeting> mlist= new ArrayList();
 		try {
+			con = ConnectionManager.getConnection();
+			pList=con.prepareStatement("select m.meetingId, m.meetingtitle, m.meetingDate, m.startTime, m.endTime, m.meetingType from Meeting m where m.organisedBy=?");
+		
 			Meeting m=null;
+			
 			pList.setInt(1, userId);
+
 			ResultSet rs=pList.executeQuery();
+
 			while(rs.next())
 			{
 				m=new Meeting();
@@ -50,6 +43,9 @@ public class ManagerHomePageDAO implements ManagerHomePageDAOInterface {
 			}
 		} catch (SQLException e) {
 			
+			e.printStackTrace();
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 		return mlist;
