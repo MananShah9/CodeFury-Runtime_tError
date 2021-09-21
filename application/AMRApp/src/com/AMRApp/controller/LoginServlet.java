@@ -79,7 +79,8 @@ public class LoginServlet extends HttpServlet {
 					
 					//login_object.manageCredits(user.getUserId());
 					
-					RequestDispatcher rd=request.getRequestDispatcher("ManagerHomePage.jsp");
+					//RequestDispatcher rd=request.getRequestDispatcher("ManagerHomePage.jsp");
+					RequestDispatcher rd=request.getRequestDispatcher("manager.jsp");
 					rd.forward(request, response);
 
 				}

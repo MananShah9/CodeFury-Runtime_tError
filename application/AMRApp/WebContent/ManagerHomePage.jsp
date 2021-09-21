@@ -33,44 +33,7 @@
 
 <body>
 
-	<!-- NAVBAR -->
-
-	<div class="container">
-
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-
-			<div class="container-fluid">
-
-				<div class="navbar-header">
-
-					<a class="navbar-brand" href="ManagerHomePage.jsp"> <img
-						src="images/logo/hsbc-logo-dark_navbar.png"
-						style="height: 20px; width: 110px;" />
-					</a>
-
-				</div>
-
-				<ul class="nav navbar-nav">
-
-					<li class="active"><a href="ManagerHomePage.jsp"> Manager
-							Home </a></li>
-
-					<li><a href="organizeMeeting.jsp"> Organize Meeting </a></li>
-
-					<li><a href="#myModal" role="button" data-toggle="modal">
-							Manager Information </a></li>
-
-					<li><a href="Logout"> Logout </a></li>
-
-				</ul>
-
-			</div>
-
-		</nav>
-
-	</div>
-
-	<!-- NAVBAR -->
+	
 
 
 	<!-- Importing ConnectionManager Modules -->
@@ -92,10 +55,15 @@
 			//MeetingRoomsServiceInterface s=MeetingServiceFactory.createObject("admin service");
 		//	User user=s.managerInfoService(u);
 			
+		
 			//LogServiceInterface ls=LogServiceFactory.createObject();
 			//Time t=ls.displayLastLoginService(u);
 			ManagerHomePageServiceInterface s=new ManagerHomePageService();
 			 //user=s.listManagerMeeting(u);
+			 
+			 User user = s.ManagerInfo(userId);
+			 
+			 
 	%>
 
 
@@ -139,116 +107,34 @@
 				<%
 	// getting the details of scheduled meetings
 	
-		System.out.println(userId);
 		
 		List<Meeting> listOfMeetings= s.listManagerMeeting(userId);
 	
 		for(Meeting m : listOfMeetings) {
 %>
 				<tr>
-
 					<td><%= m.getMeetingTitle() %></td>
 					<td><%= m.getMeetingId() %></td>
 					<td><%= m.getMeetingDate() %></td>
 					<td><%= m.getStartTime() %></td>
 					<td><%= m.getEndTime() %></td>
 					<td><%= m.getMeetingType() %></td>
-
 				</tr>
-
 				<%	}	%>
-
-
-
-
 			</tbody>
-
 		</table>
-
 	</div>
 
 
-	<!-- Footer -->
+	
+	<a href="ManagerInfoDisplayPage.jsp" role="button" data-toggle="modal">
+							Manager Information </a>
+	
+	<!--  <button type="button" action="ManagerInfoDisplayPage.jsp">Manager Information </button>
+	-->
 
-	<div class="content"></div>
+	
 
-	<footer id="myFooter">
-
-		<div class="container">
-
-			<div class="row">
-
-				<div class="col-sm-3">
-
-					<h2 class="logo">
-						<a href="ManagerHomePage.jsp"> <img
-							src="images/logo/hsbc-logo-dark_2.png"
-							style="height: 70px; width: 150px;" align="left" />
-						</a>
-					</h2>
-
-				</div>
-
-				<div class="col-sm-2">
-
-					<h5>Get started</h5>
-
-					<ul>
-
-						<li><a href="ManagerHomePage.jsp"> Home </a></li>
-						<li><a href="Logout"> Logout </a></li>
-
-					</ul>
-
-				</div>
-
-				<div class="col-sm-2">
-
-					<h5>About us</h5>
-
-					<ul>
-
-						<li><a href="about_us.jsp"> Information </a></li>
-
-						<li><a href="feedback.jsp"> Give Feedback </a></li>
-
-					</ul>
-
-				</div>
-
-				<div class="col-sm-2">
-
-					<h5>Support</h5>
-
-					<ul>
-
-						<li><a href="#"> FAQ </a></li>
-
-						<li><a href="#"> Help desk </a></li>
-
-					</ul>
-
-				</div>
-
-				<div class="col-sm-3">
-
-					<br> <a href="#">
-						<button type="button" class="btn">Contact us</button>
-					</a>
-
-				</div>
-
-			</div>
-
-		</div>
-
-		<div class="footer-copyright">
-
-			<p>Developed By WFS BATCH-1 @ HSBC-CodeFury</p>
-
-		</div>
-
-	</footer>
 </body>
 
 </html>

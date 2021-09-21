@@ -48,7 +48,7 @@ public class UserDAO implements UserDAOInterface {
 
 				user.setUserPhone(rs.getString(4));
 				user.setUserRole(rs.getString(5));
-				user.setUserCredits(rs.getInt(7));
+				user.setUserCredits(rs.getInt(6));
 				return user;
 			}
 
@@ -57,10 +57,10 @@ public class UserDAO implements UserDAOInterface {
 			System.out.println(e);
 		}
 
-		finally {
-
-			ConnectionManager.closeConnection();
-		}
+//		finally {
+//
+//			ConnectionManager.closeConnection();
+//		}
 
 		return null;
 

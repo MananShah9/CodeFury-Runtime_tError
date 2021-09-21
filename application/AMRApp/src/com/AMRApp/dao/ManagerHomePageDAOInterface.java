@@ -8,5 +8,7 @@ import com.AMRApp.beans.User;
 public interface ManagerHomePageDAOInterface {
 
 	public List<Meeting> getScheduledMeetings(int user);
+
+	public User ManagerInfo(int userId);
 	
 }

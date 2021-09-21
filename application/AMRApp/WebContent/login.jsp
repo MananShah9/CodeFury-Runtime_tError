@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="css/login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <title>Login</title>
 </head>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="profile-container">
-    	<img src="../images/profile.png" alt="login-profile" />
+    	<img src="images/profile.png" alt="login-profile" />
     </div>
         <div class="container form-container">
             <div class="row">

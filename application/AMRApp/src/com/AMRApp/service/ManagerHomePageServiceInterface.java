@@ -9,5 +9,7 @@ public interface ManagerHomePageServiceInterface {
 	
 	public List<Meeting> listManagerMeeting(int user);	
 	
+	public User ManagerInfo(int userId);
+	
 	
 }

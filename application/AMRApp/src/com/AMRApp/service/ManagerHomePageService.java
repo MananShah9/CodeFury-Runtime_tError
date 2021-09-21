@@ -28,4 +28,10 @@ public class ManagerHomePageService implements ManagerHomePageServiceInterface {
 		
 	}
 
+	@Override
+	public User ManagerInfo(int userId) {
+		// TODO Auto-generated method stub
+		return mdao.ManagerInfo(userId);
+	}
+
 }
