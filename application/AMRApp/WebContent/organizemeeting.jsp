@@ -14,12 +14,12 @@
 <title>Organize Meeting</title>
 <script type="text/javascript">
 
-function generateDropDownDom() {
+function generateDropDownDom(users) {
 	var dropDownContent;
 	dropDownContent = ` <ul> `;
-	for (var userId of suggestedUsers) {
+	for (var userId of users) {
 		dropDownContent += `
-					<li onclick = addUsertoMeeting(${userId})> ${userIdToNameMap[userId]}
+					<li onclick = addUsertoMeeting(${userId})> ${users[userId]}
 					</li> `;
 	}
 	dropDownContent += `</ul > `;
@@ -31,8 +31,10 @@ function getUserSuggestions() {
 	var name = document.querySelector(".input-container input").value;
 	var x = new XMLHttpRequest();
 	//step 2 how xhr will open connection with server
+	
+	
 	x.open("GET", "searchUser.jsp?name=" + name, true);
-
+	x.responseType("application/json");
 	//step 3 how xhr will send request
 	x.send();
 
@@ -43,14 +45,14 @@ function getUserSuggestions() {
 		if (x.readyState == 4) {
 			console.log(x.responseText);
 			var users = JSON.parse(x.responseText);
-			suggestedUsers = [];
-			for (var user of users) {
-				userIdToNameMap[user.userId] = user.name;
-				if (!usersPresentInMeeting.includes(user.userId)) {
-					suggestedUsers.push(user.userId)
-				}
-			}
-			generateDropDownDom();
+			//suggestedUsers = [];
+			//userIdToNameMap = [];
+			//for (var user in users) {
+			//	userIdToNameMap[user] = users[user];
+			
+				//	suggestedUsers.push(user)
+				//}
+			generateDropDownDom(users);
 		}
 	}
 }

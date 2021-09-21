@@ -11,7 +11,7 @@
 	GetUserTableInterface meetingService = new GetUserTable();
 
 List<User> userList = meetingService.getUsers();
-List<String> searchedUserList = new ArrayList<>();
+List<User> searchedUserList = new ArrayList<>();
 
 try {
 
@@ -19,22 +19,21 @@ try {
 
 	for (User user : userList) {
 		if (user.getUserName().startsWith(name)) {
-	searchedUserList.add(user.getUserName());
+	searchedUserList.add(user);
 		}
 	}
 
 	//convert arraylist to json string
 
-	String userListJson = "[";
+	String userListJson = "{";
 	for (int i = 0; i < searchedUserList.size(); i++) {
 		if (i != 0)
-	userListJson = userListJson + ",";
-		userListJson = userListJson + "\""+searchedUserList.get(i).toString()+ "\"";
+			userListJson = userListJson + ",";
+		userListJson = userListJson + searchedUserList.get(i).getUserId()+":" + "\""+searchedUserList.get(i).getUserName()+"\"," ;
 	}
-	userListJson = userListJson + "]";
-
+	userListJson = userListJson + "}";
 	// return json
-
+	System.out.println(userListJson);
 	response.setContentType("application/json");
 	response.setCharacterEncoding("UTF-8");
 	out.print(userListJson);
