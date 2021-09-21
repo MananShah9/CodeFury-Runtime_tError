@@ -15,12 +15,9 @@ List<User> searchedUserList = new ArrayList<>();
 
 try {
 
-	String name = request.getParameter("name");
 
 	for (User user : userList) {
-		if (user.getUserName().startsWith(name)) {
 	searchedUserList.add(user);
-		}
 	}
 
 	//convert arraylist to json string
@@ -29,11 +26,10 @@ try {
 	for (int i = 0; i < searchedUserList.size(); i++) {
 		if (i != 0)
 			userListJson = userListJson + ",";
-		userListJson = userListJson + searchedUserList.get(i).getUserId()+":" + "\""+searchedUserList.get(i).getUserName()+"\"," ;
+		userListJson = userListJson + "\""+searchedUserList.get(i).getUserId()+"\":" + "\""+searchedUserList.get(i).getUserName()+"\"" ;
 	}
 	userListJson = userListJson + "}";
 	// return json
-	System.out.println(userListJson);
 	response.setContentType("application/json");
 	response.setCharacterEncoding("UTF-8");
 	out.print(userListJson);

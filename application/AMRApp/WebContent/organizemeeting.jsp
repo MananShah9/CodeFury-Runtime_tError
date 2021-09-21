@@ -14,16 +14,21 @@
 <title>Organize Meeting</title>
 <script type="text/javascript">
 
-function generateDropDownDom(users) {
+function generateDropDownDom() {
 	var dropDownContent;
-	dropDownContent = ` <ul> `;
-	for (var userId of users) {
-		dropDownContent += `
-					<li onclick = addUsertoMeeting(${userId})> ${users[userId]}
-					</li> `;
+	var elements =document.getElementsByName("membersdiv");
+	for(var ele =0;ele<elements.length ;ele++){
+		console.log(elements[ele]);
+		elements[ele].style.display = "none";
 	}
-	dropDownContent += `</ul > `;
-	document.querySelector(".content-container").innerHTML = dropDownContent;
+	var starting = document.getElementById("toSearch").value;
+	
+	for (var userId in users) {
+		if(users[userId].startsWith(starting)){
+			document.getElementById(userId+"div").style.display = "block";
+			
+		}
+	}
 
 }
 
@@ -33,8 +38,7 @@ function getUserSuggestions() {
 	//step 2 how xhr will open connection with server
 	
 	
-	x.open("GET", "searchUser.jsp?name=" + name, true);
-	x.responseType("application/json");
+	x.open("GET", "searchUser.jsp");
 	//step 3 how xhr will send request
 	x.send();
 
@@ -43,22 +47,24 @@ function getUserSuggestions() {
 
 	x.onreadystatechange = function () {
 		if (x.readyState == 4) {
-			console.log(x.responseText);
-			var users = JSON.parse(x.responseText);
-			//suggestedUsers = [];
-			//userIdToNameMap = [];
-			//for (var user in users) {
-			//	userIdToNameMap[user] = users[user];
+			 users = JSON.parse(x.responseText);
+
+			 dropDownContent = ` <ul> `;
+				for (var userId in users) {
+					
+					dropDownContent += 
+					"<div name=\"membersdiv\" id=\""+userId+"div\"  >   <input type=\"checkbox\" id=\""+userId+"\"  name=\"members\" value="+userId+"><label>"+ users[userId]+"</label></div>";
+				}
+				dropDownContent += `</ul > `;
+				document.querySelector(".content-container").innerHTML = dropDownContent;
 			
-				//	suggestedUsers.push(user)
-				//}
-			generateDropDownDom(users);
 		}
 	}
 }
+var users;
 </script>
 </head>
-<body>
+<body onload="getUserSuggestions()">
 	<jsp:include page="header.jsp"/>
 	
 	 <div class="heading-organize">
@@ -124,7 +130,7 @@ function getUserSuggestions() {
 						</div>
 					</div>
 					<div class='input-container'>
-			<input type=text class='width100' onkeyup="getUserSuggestions();"> 
+			<input type=text class='width100' id="toSearch" onkeyup="generateDropDownDom();"> 
 			<div class="content-container">
 		</div>
 					<!-- Button trigger modal -->
@@ -144,13 +150,7 @@ function getUserSuggestions() {
 					      </div>
 					      <div class="modal-body">
 					      	
-	                		<!-- <select required name="members" id="members" class="form-select" aria-label="Default select example" multiple="true">
-			                    <option selected>Add Members to Meeting</option>
-			                    <option value="1">Kanika Bagri</option>
-			                    <option value="2">Manan Shah</option>
-			                    <option value="3">Kanishka</option>
-			                    <option value="4">Ananya Dwivedi</option>
-	                		</select> -->
+	                		
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

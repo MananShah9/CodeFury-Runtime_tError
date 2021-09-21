@@ -26,9 +26,10 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		String meetingDate = request.getParameter("meetingDate");
 		String meetingStartTime = request.getParameter("startTime");
 		String meetingEndTime = request.getParameter("endTime");
-		String meetingMembers = request.getParameter("members");
-
-		System.out.println(meetingMembers);
+		String[] meetingMembers = request.getParameterValues("members");
+		System.out.println("here");
+		for (String member:meetingMembers)
+		System.out.println(member);
 //		
 //		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
 //		
