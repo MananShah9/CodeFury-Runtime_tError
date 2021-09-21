@@ -1,6 +1,5 @@
 package com.AMRApp.factory;
 
-import com.AMRApp.dao.AdminEditRoomDao;
 import com.AMRApp.dao.AdminEditRoomDaoImpl;
 import com.AMRApp.dao.AdminEditRoomDaoInterface;
 import com.AMRApp.service.AdminEditRoomServiceImpl;

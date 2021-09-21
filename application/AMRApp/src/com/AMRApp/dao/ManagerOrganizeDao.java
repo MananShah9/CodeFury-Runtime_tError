@@ -22,7 +22,9 @@ public class ManagerOrganizeDao implements ManagerOrganizeDaoInterface {
 
 	@Override
 	public boolean storeMeeting(Meeting m, ArrayList<User> memberList) {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return false;
 	}
 

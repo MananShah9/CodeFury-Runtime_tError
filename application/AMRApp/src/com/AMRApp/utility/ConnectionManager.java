@@ -16,7 +16,7 @@ public class ConnectionManager {
 		if(conn==null) {
 			String url="jdbc:mysql://localhost:3306/project_db?useSSL=false";
 			String username="root";
-			String password="Tejas@1999";
+			String password="root";
 			System.out.println("Yha error aari hai");
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			System.out.println("Neeche error aara h");
