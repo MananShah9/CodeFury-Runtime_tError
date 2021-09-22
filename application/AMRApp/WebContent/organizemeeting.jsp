@@ -80,9 +80,10 @@ var users;
 		            <div>
 		            	<select onblur="validateMeetingType()" required name="meetingType" id="meetingType" class="form-select" aria-label="Default select example">
 		                    <option selected>Select the type of Meeting</option>
-		                    <option value="1">Business</option>
-		                    <option value="2">Casual</option>
-		                    <option value="3">Budget</option>
+		                    <option value="Classroom Training">Classroom Training</option>
+		                    <option value="Online Training">Online Training</option>
+		                    <option value="Conference Call">Conference Call</option>
+		                    <option value="Business">Business</option>
 	                	</select>
 	                	<span id="errorMeetingType"></span>
 		            </div>
@@ -130,16 +131,12 @@ var users;
 						</div>
 					</div>
 					<div class='input-container'>
-			<input type=text class='width100' id="toSearch" onkeyup="generateDropDownDom();"> 
-			<div class="content-container">
-		</div>
+			
 					<!-- Button trigger modal -->
 					<button  type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addMembersModal">
 					  Add Members
 					</button>
-					<button id="searchRooms" type="button" class="btn btn-dark">
-					 Search Meeting Rooms
-					</button>
+					
 					<!-- Modal -->
 					<div class="modal fade" id="addMembersModal" tabindex="-1" aria-labelledby="addMembersModal" aria-hidden="true">
 					  <div class="modal-dialog">
@@ -149,7 +146,9 @@ var users;
 					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					      </div>
 					      <div class="modal-body">
-					      	
+					      	<input type=text class='width100' id="toSearch" onkeyup="generateDropDownDom();"> 
+			<div class="content-container">
+		</div>
 	                		
 					      </div>
 					      <div class="modal-footer">
@@ -165,7 +164,7 @@ var users;
 	            </div>
 	        </div>
 	        	<button style="margin-left:80%; margin-top: 25px; margin-bottom: 25px" type="submit" class="btn btn-success organize-button">
-					Organize Meeting
+					Search Meeting Rooms
 				</button>
 				<br />
 	    </div>

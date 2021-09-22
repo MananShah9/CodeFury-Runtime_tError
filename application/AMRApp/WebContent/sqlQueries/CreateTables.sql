@@ -1,6 +1,4 @@
-
-
-CREATE TABLE User(userId int PRIMARY KEY AUTO_GENERATE,userName varchar(30),userEmail varchar(50),
+CREATE TABLE User(userId int PRIMARY KEY AUTO_INCREMENT,userName varchar(30),userEmail varchar(50),
 	userPhone varchar(30),userRole varchar(10),userCredits int default 0, userPass varchar(20));
 
 CREATE TABLE Meeting(meetingId int PRIMARY KEY AUTO_INCREMENT, meetingtitle varchar(60), organisedBy int, meetingDate varchar(20), 

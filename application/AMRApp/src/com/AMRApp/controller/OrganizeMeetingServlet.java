@@ -30,8 +30,10 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		System.out.println("here");
 		for (String member:meetingMembers)
 		System.out.println(member);
-//		
-//		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
+	
+		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
+		
+		
 //		
 //		mOrganizeService.saveMeetingService(m, memberList);
 //		
