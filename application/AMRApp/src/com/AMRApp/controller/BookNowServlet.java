@@ -36,7 +36,7 @@ public class BookNowServlet extends HttpServlet {
 		mBook.saveUser(meetParticipants, meetingId);
 		
 		
-		mBook.saveBookingInfo(mlist,m);
+	//	mBook.saveBookingInfo(mlist,m);
 		
 		
 		
