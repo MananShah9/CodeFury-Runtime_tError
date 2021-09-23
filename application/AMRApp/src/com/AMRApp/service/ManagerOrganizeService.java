@@ -17,8 +17,7 @@ public class ManagerOrganizeService implements ManagerOrganizeServiceInterface {
 
 	@Override
 	public ArrayList<MeetingRoom> listValidMeetingRooms(Meeting m) {
-		// TODO Auto-generated method stub
-		return null;
+		return  mod.getAvailableMeetingRooms(m);
 	}
 
 	@Override

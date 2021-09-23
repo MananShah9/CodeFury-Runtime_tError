@@ -1,8 +1,3 @@
-
-| meetingId | meetingtitle  | organisedBy | meetingDate | startTime | endTime | meetingType     |
-+-----------+---------------+-------------+-------------+-----------+---------+-----------------+
-|         1 | Discuss stuff |           3 | 20-05-2021  | 12:00     | 3:00    | Online Training
-
 User Table:
 
 INSERT INTO User(userName, userEmail, userPhone, userRole, userCredits, userPass) values 
@@ -23,6 +18,21 @@ INSERT INTO User(userName, userEmail, userPhone, userRole, userPass) values
  INSERT INTO User(userName, userEmail, userPhone, userRole, userPass) values
  ("Dharmesh", "dharmesh@gmail.com", "9798416266", "Member", "dharmesh");
  
+ Meeting Table: 
  
- INSERT INTO Meeting( meetingtitle, organisedBy, meetingDate, startTime, endTime, meetingType) values 
- (" Discuss stuff" , 1 ,"20-05-2021","12:00"," 3:00"," Online Training");
+INSERT INTO Meeting( meetingtitle, organisedBy, meetingDate, startTime, endTime, meetingType) values
+ (" Discuss stuff" , 1 ,"20-10-2021","12:00"," 15:00","Classroom Training");
+ 
+ MeetingRoom Table:
+ 
+INSERT INTO MeetingRoom Values ("Meeting Room 1", 15, 4, 30);
+
+ INSERT INTO MeetingRoom Values ("Meeting Room 2", 10, 5, 20);
+ 
+ Amenities Table:
+ 
+ INSERT INTO AMENITIES(projector,whiteboard,meetingRoomName) VALUES(1,1,"Meeting Room 1");
+ 
+ INSERT INTO AMENITIES(projector,whiteboard,meetingRoomName) VALUES(1,1,"Meeting Room 2");
+ 
+ 

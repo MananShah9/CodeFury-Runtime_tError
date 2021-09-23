@@ -34,17 +34,22 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		
 		
 		//Will come from session later
-//		int managerId=3; 
-//		Meeting m = new Meeting();
-//		m.setMeetingTitle(meetingTitle);
-//		m.setMeetingType(meetingType);
-//		m.setMeetingDate(meetingDate);
-//		m.setStartTime(meetingStartTime);
-//		m.setEndTime(meetingEndTime);
-//		m.setOrganiserId(managerId);
-//		
-//		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
-//		int meetingId = mOrganizeService.saveMeetingService(m);
+		int managerId=3; 
+		Meeting m = new Meeting();
+		m.setMeetingTitle(meetingTitle);
+		m.setMeetingType(meetingType);
+		m.setMeetingDate(meetingDate);
+		m.setStartTime(meetingStartTime);
+		m.setEndTime(meetingEndTime);
+		m.setOrganiserId(managerId);
+		
+		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
+		
+		mOrganizeService.listValidMeetingRooms(m);
+		
+		//int meetingId = mOrganizeService.saveMeetingService(m);
+		
+		
 		
 //		
 //		mOrganizeService.saveMeetingService(m, memberList);

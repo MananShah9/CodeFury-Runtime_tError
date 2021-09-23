@@ -56,7 +56,7 @@ public class ManagerHomePageDAO implements ManagerHomePageDAOInterface {
 	public User ManagerInfo(int userId) {
 		// TODO Auto-generated method stub
 		
-User user=null;
+		User user=null;
 		
 		//getting manager information
 		
