@@ -44,7 +44,11 @@
 	  <main>
 	  	<h1>Manager Dashboard</h1>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	    
+	      <span style="float:right; margin-top:-8%; font-size: 13px;">
+		  	<a href="">
+	          <h4>LOGOUT</h4>
+	        </a>
+        </span>
 	    <section>
 	    	<div class="section-header">
 	    		<h3>Scheduled Meetings</h3>
@@ -73,7 +77,7 @@
 		for(Meeting m : listOfMeetings) {
 		%>
 				    <tr>
-				     <th scope="row"><a href="editRoom.jsp"><%= m.getMeetingTitle() %></a></th>
+				     <th scope="row"><%= m.getMeetingTitle() %></th>
 				    <td><%= m.getMeetingId() %></td>
 					<td><%= m.getMeetingDate() %></td>
 					<td><%= m.getStartTime() %></td>
@@ -84,6 +88,7 @@
 				  </tbody>
 				</table>
 	    	</div>
+	    	<a href="organizemeeting.jsp">Organize Meeting</a>
 	    </section>
 	  </main>
 	  
