@@ -1,6 +1,8 @@
 package com.AMRApp.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.AMRApp.beans.Meeting;
+import com.AMRApp.beans.MeetingRoom;
 import com.AMRApp.service.ManagerOrganizeService;
 import com.AMRApp.service.ManagerOrganizeServiceInterface;
 
@@ -38,16 +41,17 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		Meeting m = new Meeting();
 		m.setMeetingTitle(meetingTitle);
 		m.setMeetingType(meetingType);
-		m.setMeetingDate(meetingDate);
-		m.setStartTime(meetingStartTime);
-		m.setEndTime(meetingEndTime);
+		m.setMeetingDate("20-10-2021");
+		m.setStartTime("13:00");
+		m.setEndTime("16:00");
 		m.setOrganiserId(managerId);
 		
 		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
+		ArrayList<MeetingRoom> mlist=mOrganizeService.listValidMeetingRooms(m,meetingMembers.length);
+		for(MeetingRoom mr : mlist)
+			System.out.println(mr.toString());
 		
-		mOrganizeService.listValidMeetingRooms(m);
-		
-		//int meetingId = mOrganizeService.saveMeetingService(m);
+//		int meetingId = mOrganizeService.saveMeetingService(m);
 		
 		
 		

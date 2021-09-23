@@ -9,7 +9,7 @@ import com.AMRApp.beans.User;
 public interface ManagerOrganizeDaoInterface {
 
 	
-	public ArrayList<MeetingRoom> getAvailableMeetingRooms(Meeting m); 
+	public ArrayList<MeetingRoom> getAvailableMeetingRooms(Meeting m, int noOfMembers); 
 	public  void storeUser(ArrayList<User> u, int meetingId);
 	// add 2 exceptions NotEnoughCreditsException, MeetingRoomAlreadyBookedException.
 	public int storeMeeting(Meeting m);

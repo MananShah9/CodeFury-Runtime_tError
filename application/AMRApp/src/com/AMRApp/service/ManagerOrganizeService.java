@@ -16,8 +16,8 @@ public class ManagerOrganizeService implements ManagerOrganizeServiceInterface {
 	}
 
 	@Override
-	public ArrayList<MeetingRoom> listValidMeetingRooms(Meeting m) {
-		return  mod.getAvailableMeetingRooms(m);
+	public ArrayList<MeetingRoom> listValidMeetingRooms(Meeting m, int nom) {
+		return  mod.getAvailableMeetingRooms(m, nom);
 	}
 
 	@Override
