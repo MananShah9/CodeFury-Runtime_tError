@@ -9,6 +9,7 @@
 <meta charset="ISO-8859-1">
 <title>Welcome to AutomatedBooking</title>
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <style>
 
 </style>
@@ -37,7 +38,7 @@
 			
 			<p class="card-text">Ratings: </p>
 			
-			<% for(int j=0;j<meetingRoomList.size();j++){ %>
+			<% for(int j=0;j<meetingRoom.getRoomRating();j++){ %>
 
                         	<i class="fa fa-star"></i>
 			
