@@ -16,10 +16,11 @@
 <body>
 	<jsp:include page="header.jsp"/>
 	
+<form action="bookTimeSlot.jsp" method = "POST">
 	 <div class="container meeting-rooms">
-        <h2 style="margin-top: 55px; text-align: center">Our Meeting Rooms</h2>
+        <h2 style="margin-top: 75px; text-align: center">Available Meeting Rooms</h2>
         <div class="row mt-5">
-		<form action="bookTimeSlot.jsp" method = "post">
+	
 	<% 
 	List<MeetingRoom> meetingRoomList=new ArrayList<MeetingRoom>();
 	meetingRoomList = (List<MeetingRoom>)request.getAttribute("meetingRoomList"); 
@@ -43,15 +44,17 @@
 			<% } %>
 
                     </div>
+                    <div class="card-footer">
+                    	<button type="submit" class="btn btn-success">SELECT ROOM</button>
+                    </div>
                 </div>
             </div>
 	
 	<% } %>
-</form>
-	</div>
-	 <button type="submit" class="btn btn-dark">Organize Meeting</button>
-</div>
 
+	</div>
+</div>
+</form>
 	 
 	
 	<jsp:include page="footer.jsp"/>

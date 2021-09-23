@@ -10,7 +10,6 @@ public class ImportUsersServiceImpl implements ImportUsersServiceInterface {
 	ImportUsersServiceDAOInterface importUserDAO= new ImportUsersServiceDAOImpl();
 	@Override
 	public boolean importUsers(List<User> listOfUsers) {
-		
 		return importUserDAO.importUsers(listOfUsers);
 	}
 

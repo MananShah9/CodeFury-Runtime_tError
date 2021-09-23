@@ -25,7 +25,7 @@
 
                 </div>
                 <div class="col-lg-8">
-                    <form id="uploadUsersForm">
+                    <form id="uploadUsersForm" method="post" action="ImportXMLServlet"  enctype="multipart/form-data">
                        <div class="input-group mb-3">
   							<span class="input-group-text" id="basic-addon1">
   								<i class="fa fa-users"></i>

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +24,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.AMRApp.beans.User;
+import com.AMRApp.dao.ImportUsersServiceDAOImpl;
+import com.AMRApp.dao.ImportUsersServiceDAOInterface;
 
 /**
  * Servlet implementation class ImportXMLServlet
@@ -39,17 +42,18 @@ public class ImportXMLServlet extends HttpServlet {
 			Pattern.CASE_INSENSITIVE);
 	public static final Pattern VALID_PHONE_NUMBER_REGEX = Pattern.compile("\\d{10}", Pattern.CASE_INSENSITIVE);
 
-	public static boolean validateEmail(String emailStr) {
+	public boolean validateEmail(String emailStr) {
 		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
 		return matcher.find();
 	}
 
-	public static boolean validatePhone(String phone) {
+	public  boolean validatePhone(String phone) {
 		Matcher matcher = VALID_PHONE_NUMBER_REGEX.matcher(phone);
 		return matcher.find();
 	}
 
-	public static void parseXML(File file) {
+		ImportUsersServiceDAOInterface importDAO= new ImportUsersServiceDAOImpl();
+	public  void parseXML(File file) {
 		try {
 			// creating a constructor of file class and parsing an XML file
 			// an instance of factory that gives a document builder
@@ -61,21 +65,24 @@ public class ImportXMLServlet extends HttpServlet {
 			NodeList nodeList = doc.getElementsByTagName("user");
 			List<User> listOfUsers = new ArrayList<User>();
 			for (int itr = 0; itr < nodeList.getLength(); itr++) {
+				User user = new User();
 				Node node = nodeList.item(itr);
 //				System.out.println("\nNode Name :" + node.getNodeName());
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) node;
-					String userName = eElement.getElementsByTagName("name").item(0).getTextContent();
-					String userEmail = eElement.getElementsByTagName("email").item(0).getTextContent();
-					String userPassword = eElement.getElementsByTagName("password").item(0).getTextContent();
+					user.setUserName(eElement.getElementsByTagName("name").item(0).getTextContent());
+					user.setUserEmail(eElement.getElementsByTagName("email").item(0).getTextContent());
+					user.setUserPass(eElement.getElementsByTagName("password").item(0).getTextContent());
 
-					if (!validateEmail(userEmail)) {
+					if (!validateEmail(user.getUserEmail())) {
 						System.out.println("Invalid email");
+						continue;
 					}
 
-					String userPhone = eElement.getElementsByTagName("phone").item(0).getTextContent();
-					if (!validatePhone(userPhone)) {
+					user.setUserPhone(eElement.getElementsByTagName("phone").item(0).getTextContent())  ;
+					if (!validatePhone(user.getUserPhone())) {
 						System.out.println("Invalid Phone number");
+						continue;
 					}
 					String userRole = eElement.getElementsByTagName("role").item(0).getTextContent();
 					int credits;
@@ -85,13 +92,15 @@ public class ImportXMLServlet extends HttpServlet {
 						credits = 0;
 					} else {
 						System.out.println("Invalid USer type");
+						continue;
 					}
-					User user = new User();
-					
+					user.setUserCredits(credits);
+					listOfUsers.add(user);
 
-					// DAO insert code here
 				}
 			}
+			importDAO.importUsers(listOfUsers);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,6 +117,8 @@ public class ImportXMLServlet extends HttpServlet {
 			part.write(uploadPath + File.separator + "toImport.xml");
 		}
 		parseXML(new File(uploadPath + File.separator + "toImport.xml"));
+		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+        rd.forward(request, response);
 
 	}
 
