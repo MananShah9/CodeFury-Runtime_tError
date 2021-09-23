@@ -9,17 +9,20 @@ CREATE TABLE MeetingsAndMembers(id int PRIMARY KEY AUTO_INCREMENT, meetingId int
  CONSTRAINT fk_meetingid FOREIGN KEY (meetingId) REFERENCES Meeting(meetingId) ON DELETE CASCADE,
   CONSTRAINT fk_memid FOREIGN KEY (memberId) REFERENCES User(userId) ON DELETE CASCADE );
 
-CREATE TABLE MeetingRoom(meetingName varchar(60) PRIMARY KEY, seatingCapacity int, ratings int,
+CREATE TABLE MeetingRoom(meetingRoomName varchar(60) PRIMARY KEY, seatingCapacity int, ratings int,
 	perHourCost int);
 
 CREATE TABLE Amenities(amenityId int PRIMARY KEY AUTO_INCREMENT,projector int, wifi int, conCall int, whiteboard int,
- waterDispenser int, TV int, Coffee int,meetingId varchar(60),
- CONSTRAINT fk_meid FOREIGN KEY (meetingId) REFERENCES MeetingRoom(meetingName) ON DELETE CASCADE);
+ waterDispenser int, TV int, Coffee int,meetingRoomName varchar(60),
+ CONSTRAINT fk_meid FOREIGN KEY (meetingRoomName) REFERENCES MeetingRoom(meetingRoomName) ON DELETE CASCADE);
 
 CREATE TABLE BookingInfo(bookingId int PRIMARY KEY AUTO_INCREMENT,
 	meetingRoomName varchar(20),bookingDate varchar(20),startTime varchar(20),
 	endTime varchar(20),organiserId int,CONSTRAINT fk_orgId FOREIGN KEY (organiserId) REFERENCES User(userId) ON DELETE CASCADE,
-	CONSTRAINT fk_meetRoomName FOREIGN KEY (meetingRoomName) REFERENCES MeetingRoom(meetingName) ON DELETE CASCADE);
+	CONSTRAINT fk_meetRoomName FOREIGN KEY (meetingRoomName) REFERENCES MeetingRoom(meetingRoomName) ON DELETE CASCADE);
+
+
+
 
 CREATE TABLE Feedback (
 id int primary key AUTO_INCREMENT,
