@@ -2,6 +2,7 @@ package com.AMRApp.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,8 +33,15 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		String meetingEndTime = request.getParameter("endTime");
 		String[] meetingMembers = request.getParameterValues("members");
 		
+		System.out.println("here");
+		List<String> temp = new ArrayList<>();
+		for (String member:meetingMembers)
+		{
+			System.out.println(member);
+			temp.add(member);
+		}
 		
-		
+
 		
 		//Will come from session later
 		int managerId=3; 
@@ -51,16 +59,15 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		for(MeetingRoom mr : mlist)
 			System.out.println(mr.toString());
         request.setAttribute("meetingRoomList",mlist);
+        
+        
+        request.setAttribute("meetingInfo",m);
+        request.setAttribute("meetParticipants",temp);
+        
+        
         RequestDispatcher rd = request.getRequestDispatcher("meetingRoomsFound.jsp");
         rd.forward(request, response);
-//		int meetingId = mOrganizeService.saveMeetingService(m);
-		
-		
-		
-//		
-//		mOrganizeService.saveMeetingService(m, memberList);
-//		
-//		Meeting m = new Meeting();
+	
 		
 		
 	}
