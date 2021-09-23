@@ -20,16 +20,9 @@ public class ManagerOrganizeService implements ManagerOrganizeServiceInterface {
 		return  mod.getAvailableMeetingRooms(m, nom);
 	}
 
-	@Override
-	public  void saveUser(ArrayList<User> u,int meetingId) {
-		// TODO Auto-generated method stub
-		mod.storeUser(u, meetingId);
-	}
+	
 
-	@Override
-	public int saveMeetingService(Meeting m) {
-		return mod.storeMeeting(m);
-	}
+	
 
 	@Override
 	public int getCredits(User u) {

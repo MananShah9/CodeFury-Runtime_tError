@@ -10,9 +10,7 @@ public interface ManagerOrganizeDaoInterface {
 
 	
 	public ArrayList<MeetingRoom> getAvailableMeetingRooms(Meeting m, int noOfMembers); 
-	public  void storeUser(ArrayList<User> u, int meetingId);
-	// add 2 exceptions NotEnoughCreditsException, MeetingRoomAlreadyBookedException.
-	public int storeMeeting(Meeting m);
+	
 	public int getCreditsDao(User u);
 	
 	
