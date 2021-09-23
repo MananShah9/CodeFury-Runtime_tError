@@ -9,10 +9,12 @@ CREATE TABLE MeetingsAndMembers(id int PRIMARY KEY AUTO_INCREMENT, meetingId int
  CONSTRAINT fk_meetingid FOREIGN KEY (meetingId) REFERENCES Meeting(meetingId) ON DELETE CASCADE,
   CONSTRAINT fk_memid FOREIGN KEY (memberId) REFERENCES User(userId) ON DELETE CASCADE );
 
-CREATE TABLE MeetingRoom(meetingName varchar(60) PRIMARY KEY, seatingCapacity int, ratings int, amenitiesAvail int , 
-	perHourCost int, CONSTRAINT fk_aid FOREIGN KEY (amenitiesAvail) REFERENCES Amenities(amenityId) ON DELETE CASCADE);
+CREATE TABLE MeetingRoom(meetingName varchar(60) PRIMARY KEY, seatingCapacity int, ratings int,
+	perHourCost int);
 
-CREATE TABLE Amenities(amenityId int PRIMARY KEY AUTO_INCREMENT,projector int, wifi int, conCall int, whiteboard int, waterDispenser int, TV int, Coffee int);
+CREATE TABLE Amenities(amenityId int PRIMARY KEY AUTO_INCREMENT,projector int, wifi int, conCall int, whiteboard int,
+ waterDispenser int, TV int, Coffee int,meetingId varchar(60),
+ CONSTRAINT fk_meid FOREIGN KEY (meetingId) REFERENCES MeetingRoom(meetingName) ON DELETE CASCADE);
 
 CREATE TABLE BookingInfo(bookingId int PRIMARY KEY AUTO_INCREMENT,
 	meetingRoomName varchar(20),bookingDate varchar(20),startTime varchar(20),

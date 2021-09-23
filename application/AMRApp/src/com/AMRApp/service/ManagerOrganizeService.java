@@ -5,8 +5,15 @@ import java.util.ArrayList;
 import com.AMRApp.beans.Meeting;
 import com.AMRApp.beans.MeetingRoom;
 import com.AMRApp.beans.User;
+import com.AMRApp.dao.ManagerOrganizeDao;
+import com.AMRApp.dao.ManagerOrganizeDaoInterface;
 
 public class ManagerOrganizeService implements ManagerOrganizeServiceInterface {
+	ManagerOrganizeDaoInterface mod;
+	public ManagerOrganizeService() {
+		mod=new ManagerOrganizeDao();
+		
+	}
 
 	@Override
 	public ArrayList<MeetingRoom> listValidMeetingRooms(Meeting m) {
@@ -15,15 +22,14 @@ public class ManagerOrganizeService implements ManagerOrganizeServiceInterface {
 	}
 
 	@Override
-	public ArrayList<User> searchUser(User u) {
+	public  void saveUser(ArrayList<User> u,int meetingId) {
 		// TODO Auto-generated method stub
-		return null;
+		mod.storeUser(u, meetingId);
 	}
 
 	@Override
-	public boolean saveMeetingService(Meeting m, ArrayList<User> memberList) {
-		// TODO Auto-generated method stub
-		return false;
+	public int saveMeetingService(Meeting m) {
+		return mod.storeMeeting(m);
 	}
 
 	@Override
@@ -31,5 +37,7 @@ public class ManagerOrganizeService implements ManagerOrganizeServiceInterface {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
 
 }

@@ -29,10 +29,22 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		String[] meetingMembers = request.getParameterValues("members");
 		System.out.println("here");
 		for (String member:meetingMembers)
-		System.out.println(member);
-	
-		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
+			System.out.println(member);
 		
+		
+		
+		//Will come from session later
+//		int managerId=3; 
+//		Meeting m = new Meeting();
+//		m.setMeetingTitle(meetingTitle);
+//		m.setMeetingType(meetingType);
+//		m.setMeetingDate(meetingDate);
+//		m.setStartTime(meetingStartTime);
+//		m.setEndTime(meetingEndTime);
+//		m.setOrganiserId(managerId);
+//		
+//		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
+//		int meetingId = mOrganizeService.saveMeetingService(m);
 		
 //		
 //		mOrganizeService.saveMeetingService(m, memberList);

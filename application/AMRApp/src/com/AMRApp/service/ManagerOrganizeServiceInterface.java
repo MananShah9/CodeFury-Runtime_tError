@@ -9,10 +9,9 @@ import com.AMRApp.beans.User;
 public interface ManagerOrganizeServiceInterface {
 
 	public ArrayList<MeetingRoom> listValidMeetingRooms(Meeting m); 
-	public ArrayList<User> searchUser(User u);
-	
+	public  void saveUser(ArrayList<User> u,int meetingId);	
 	// add 2 exceptions NotEnoughCreditsException, MeetingRoomAlreadyBookedException.
-	public boolean saveMeetingService(Meeting m, ArrayList<User> memberList);
+	public int saveMeetingService(Meeting m);
 	public int getCredits(User u);
 	
 	
