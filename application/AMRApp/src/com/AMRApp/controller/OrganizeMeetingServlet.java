@@ -3,6 +3,7 @@ package com.AMRApp.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +51,9 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		ArrayList<MeetingRoom> mlist=mOrganizeService.listValidMeetingRooms(m,meetingMembers.length);
 		for(MeetingRoom mr : mlist)
 			System.out.println(mr.toString());
-		
+        request.setAttribute("meetingRoomList",mlist);
+        RequestDispatcher rd = request.getRequestDispatcher("meetingRoomsFound.jsp");
+        rd.forward(request, response);
 //		int meetingId = mOrganizeService.saveMeetingService(m);
 		
 		

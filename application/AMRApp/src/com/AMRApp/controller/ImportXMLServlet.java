@@ -2,6 +2,8 @@ package com.AMRApp.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,19 +21,20 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.AMRApp.beans.User;
+
 /**
  * Servlet implementation class ImportXMLServlet
  */
 @WebServlet("/ImportXMLServlet")
-@MultipartConfig(
-		  fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
-		  maxFileSize = 1024 * 1024 * 10,      // 10 MB
-		  maxRequestSize = 1024 * 1024 * 100   // 100 MB
-		)
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+		maxFileSize = 1024 * 1024 * 10, // 10 MB
+		maxRequestSize = 1024 * 1024 * 100 // 100 MB
+)
 public class ImportXMLServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	
+
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
 			Pattern.CASE_INSENSITIVE);
 	public static final Pattern VALID_PHONE_NUMBER_REGEX = Pattern.compile("\\d{10}", Pattern.CASE_INSENSITIVE);
@@ -56,6 +59,7 @@ public class ImportXMLServlet extends HttpServlet {
 			Document doc = db.parse(file);
 			doc.getDocumentElement().normalize();
 			NodeList nodeList = doc.getElementsByTagName("user");
+			List<User> listOfUsers = new ArrayList<User>();
 			for (int itr = 0; itr < nodeList.getLength(); itr++) {
 				Node node = nodeList.item(itr);
 //				System.out.println("\nNode Name :" + node.getNodeName());
@@ -63,6 +67,7 @@ public class ImportXMLServlet extends HttpServlet {
 					Element eElement = (Element) node;
 					String userName = eElement.getElementsByTagName("name").item(0).getTextContent();
 					String userEmail = eElement.getElementsByTagName("email").item(0).getTextContent();
+					String userPassword = eElement.getElementsByTagName("password").item(0).getTextContent();
 
 					if (!validateEmail(userEmail)) {
 						System.out.println("Invalid email");
@@ -74,34 +79,36 @@ public class ImportXMLServlet extends HttpServlet {
 					}
 					String userRole = eElement.getElementsByTagName("role").item(0).getTextContent();
 					int credits;
-					if(userRole.equals("Manager") ){
-						credits=2000;
-					}
-					else if(userRole.equals("Admin")||userRole.equals("Member")) {
-						credits=0;
-					}
-					else {
+					if (userRole.equals("Manager")) {
+						credits = 2000;
+					} else if (userRole.equals("Admin") || userRole.equals("Member")) {
+						credits = 0;
+					} else {
 						System.out.println("Invalid USer type");
 					}
-					System.out.println(userEmail+userName+userPhone+userRole);
-					//DAO insert code here
+					User user = new User();
+					
+
+					// DAO insert code here
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String uploadPath = getServletContext().getRealPath("") + File.separator + "TempXMLFiles";
 		File uploadDir = new File(uploadPath);
 
-		if (!uploadDir.exists()) uploadDir.mkdir();
+		if (!uploadDir.exists())
+			uploadDir.mkdir();
 		for (Part part : request.getParts()) {
-		    part.write(uploadPath + File.separator + "toImport.xml");
+			part.write(uploadPath + File.separator + "toImport.xml");
 		}
 		parseXML(new File(uploadPath + File.separator + "toImport.xml"));
-		
+
 	}
 
 }
