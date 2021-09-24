@@ -1,6 +1,8 @@
 package com.AMRApp.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -78,6 +80,19 @@ public class LoginServlet extends HttpServlet {
 				} else {
 					
 					//login_object.manageCredits(user.getUserId());
+					
+					
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+					  // LocalDateTime now = LocalDateTime.now();  
+					
+					
+					 // Parses the date
+			        LocalDate dt = LocalDate.now();
+			  
+			       String temp =  dtf.format(dt);
+			        // Prints the day
+			        System.out.println(dt.getDayOfWeek());
+			        
 					
 					//RequestDispatcher rd=request.getRequestDispatcher("ManagerHomePage.jsp");
 					RequestDispatcher rd=request.getRequestDispatcher("manager.jsp");

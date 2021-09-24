@@ -25,21 +25,21 @@ public class ManagerOrganizeDao implements ManagerOrganizeDaoInterface {
 			con = ConnectionManager.getConnection();
 			String query="";
 			if(m.getMeetingType().equals("Classroom Training"))
-				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr,User u, Amenities a where "
+				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, Amenities a where "
 						+ "a.meetingRoomName=mr.meetingRoomName and a.whiteBoard=1 and a.projector=1 and mr.seatingCapacity>= ? and mr.meetingRoomName not in "
-						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits where u.userId=?)> mr.perHourCost * ?";
+						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits from user u where u.userId=?)> mr.perHourCost * ?";
 			else if(m.getMeetingType().equals("Online Training"))
-				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr,User u, Amenities a where "
+				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, Amenities a where "
 						+ "a.meetingRoomName=mr.meetingRoomName and a.wifi=1 and a.projector=1 and mr.seatingCapacity>= ? and mr.meetingRoomName not in"
-						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits where u.userId=?)> mr.perHourCost * ?";
+						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits from user u where u.userId=?)> mr.perHourCost * ?";
 			else if(m.getMeetingType().equals("Conference Call"))
-				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, User u,Amenities a where "
+				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, Amenities a where "
 						+ "a.meetingRoomName=mr.meetingRoomName and a.conCall=1 and mr.seatingCapacity>= ? and mr.meetingRoomName not in"
-						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits where u.userId=?)> mr.perHourCost * ?";
+						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits from user u where u.userId=?)> mr.perHourCost * ?";
 			else
-				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, User u,Amenities a where "
+				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, Amenities a where "
 						+ "a.meetingRoomName=mr.meetingRoomName and a.projector=1 and mr.seatingCapacity>= ? and mr.meetingRoomName not in"
-						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits where u.userId=?)> mr.perHourCost * ?";
+						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits from user u where u.userId=?)> mr.perHourCost * ?";
 			pList=con.prepareStatement(query);
 			
 			MeetingRoom mr=null;

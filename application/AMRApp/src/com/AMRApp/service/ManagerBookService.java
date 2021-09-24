@@ -26,7 +26,19 @@ public class ManagerBookService implements ManagerBookServiceInterface {
 	
 	@Override
 	public  void saveUser(ArrayList<String> u,int meetingId) {
-		// TODO Auto-generated method stub
 		mbd.storeUser(u, meetingId);
+	}
+
+
+	@Override
+	public void saveBookingInfo(Meeting m, String meetingRoomName, int managerId) {
+		mbd.storeBookingInfo(m, meetingRoomName, managerId);
+	}
+
+
+	@Override
+	public void decreaseManagerCredits(Meeting m, String meetingRoomName) {
+		mbd.decreaseUserCredits(m,meetingRoomName);
+		
 	}
 }

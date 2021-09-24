@@ -10,6 +10,7 @@ public interface ManagerOrganizeDaoInterface {
 
 	
 	public ArrayList<MeetingRoom> getAvailableMeetingRooms(Meeting m, int noOfMembers,int duration); 
+
 	
 	
 	

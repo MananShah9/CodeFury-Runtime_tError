@@ -16,6 +16,7 @@ public class ManagerOrganizeService implements ManagerOrganizeServiceInterface {
 	}
 
 	@Override
+
 	public ArrayList<MeetingRoom> listValidMeetingRooms(Meeting m, int nom,int duration) {
 		return  mod.getAvailableMeetingRooms(m, nom,duration);
 	}
