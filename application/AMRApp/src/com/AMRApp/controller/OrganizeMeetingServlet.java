@@ -32,6 +32,8 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		String meetingStartTime = request.getParameter("startTime");
 		String meetingEndTime = request.getParameter("endTime");
 		String[] meetingMembers = request.getParameterValues("members");
+		//will get duration from front-end
+		int duration=2;
 		
 		System.out.println("here");
 		List<String> temp = new ArrayList<>();
@@ -44,7 +46,7 @@ public class OrganizeMeetingServlet extends HttpServlet {
 
 		
 		//Will come from session later
-		int managerId=3; 
+		int managerId=1; 
 		Meeting m = new Meeting();
 		m.setMeetingTitle(meetingTitle);
 		m.setMeetingType(meetingType);
@@ -54,7 +56,7 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		m.setOrganiserId(managerId);
 		
 		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
-		ArrayList<MeetingRoom> mlist=mOrganizeService.listValidMeetingRooms(m,meetingMembers.length);
+		ArrayList<MeetingRoom> mlist=mOrganizeService.listValidMeetingRooms(m,meetingMembers.length,duration);
 		System.out.println("here");
 		for(MeetingRoom mr : mlist)
 			System.out.println(mr.toString());

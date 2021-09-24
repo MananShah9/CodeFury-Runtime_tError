@@ -5,9 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.AMRApp.beans.Meeting;
+import com.AMRApp.beans.MeetingRoom;
 import com.AMRApp.beans.User;
 import com.AMRApp.utility.ConnectionManager;
 
@@ -126,15 +130,44 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 
 			ps.executeQuery();
 
-			ResultSet rs = ps.getGeneratedKeys(); // get the generated key
-			while(rs.next()) {
-				
-			}
 
 		} catch (SQLException e) {
 
 			System.out.println(e);
 		}
+		
+	}
+
+	@Override
+	public void decreaseUserCredits(Meeting m, String meetingRoomName) {
+		
+	
+    
+    try {
+    	
+    	int durationHours=Integer.parseInt(m.getEndTime().substring(0,2))-Integer.parseInt( m.getStartTime().substring(0,2));
+    	
+    	int durationMinutes=Integer.parseInt(m.getEndTime().substring(2))-Integer.parseInt( m.getStartTime().substring(2));
+    	
+    	if(durationMinutes!=0)
+    		++durationHours;
+	
+    	String query="UPDATE User u set u.userCredits= u.userCredits - ((SELECT mr.perHourCost from MeetingRoom mr where mr.meetingRoomName = ? )* ?) "
+    			+"where u.userId= ? ";
+    	
+    	pList=con.prepareStatement(query);
+		
+		pList.setString(1, meetingRoomName);
+		
+		pList.setInt(2, durationHours);
+		
+		pList.setInt(3, m.getOrganiserId());
+		
+    	pList.executeUpdate();
+    } catch (Exception e) {
+		e.printStackTrace();
+	}
+		
 		
 	}
 

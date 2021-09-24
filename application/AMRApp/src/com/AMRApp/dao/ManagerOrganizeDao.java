@@ -14,38 +14,44 @@ import com.AMRApp.beans.User;
 import com.AMRApp.utility.ConnectionManager;
 
 public class ManagerOrganizeDao implements ManagerOrganizeDaoInterface {
-	static PreparedStatement pList;
+	static PreparedStatement pList,pgetById;
 	static Connection con;
 
 	@Override
-	public ArrayList<MeetingRoom> getAvailableMeetingRooms(Meeting m, int noOfMembers) {
+	public ArrayList<MeetingRoom> getAvailableMeetingRooms(Meeting m, int noOfMembers,int duration) {
 		ArrayList<MeetingRoom> mlist= new ArrayList<MeetingRoom>();
+		
 		try {
 			con = ConnectionManager.getConnection();
 			String query="";
 			if(m.getMeetingType().equals("Classroom Training"))
-				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, Amenities a where "
+				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr,User u, Amenities a where "
 						+ "a.meetingRoomName=mr.meetingRoomName and a.whiteBoard=1 and a.projector=1 and mr.seatingCapacity>= ? and mr.meetingRoomName not in "
-						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?)";
+						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits where u.userId=?)> mr.perHourCost * ?";
 			else if(m.getMeetingType().equals("Online Training"))
-				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, Amenities a where "
+				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr,User u, Amenities a where "
 						+ "a.meetingRoomName=mr.meetingRoomName and a.wifi=1 and a.projector=1 and mr.seatingCapacity>= ? and mr.meetingRoomName not in"
-						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?)";
+						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits where u.userId=?)> mr.perHourCost * ?";
 			else if(m.getMeetingType().equals("Conference Call"))
-				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, Amenities a where "
+				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, User u,Amenities a where "
 						+ "a.meetingRoomName=mr.meetingRoomName and a.conCall=1 and mr.seatingCapacity>= ? and mr.meetingRoomName not in"
-						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?)";
+						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits where u.userId=?)> mr.perHourCost * ?";
 			else
-				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, Amenities a where "
+				query="SELECT mr.meetingRoomName,mr.seatingCapacity, mr.ratings, mr.perHourCost from MeetingRoom mr, User u,Amenities a where "
 						+ "a.meetingRoomName=mr.meetingRoomName and a.projector=1 and mr.seatingCapacity>= ? and mr.meetingRoomName not in"
-						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?)";
+						+"(Select meetingRoomName from BookingInfo bi where bi.bookingDate= ? and bi.startTime < ? and bi.endTime > ?) and (select u.userCredits where u.userId=?)> mr.perHourCost * ?";
 			pList=con.prepareStatement(query);
-		
+			
 			MeetingRoom mr=null;
 			pList.setInt(1, noOfMembers);
 			pList.setString(2, m.getMeetingDate());
 			pList.setString(3, m.getEndTime());
-			pList.setNString(4, m.getStartTime());
+			pList.setString(4, m.getStartTime());
+			pList.setInt(5, m.getOrganiserId());
+			pList.setInt(6, duration);
+			
+			System.out.println(m.toString()+noOfMembers+duration);
+			
 			ResultSet rs=pList.executeQuery();
 
 			while(rs.next())
@@ -56,7 +62,19 @@ public class ManagerOrganizeDao implements ManagerOrganizeDaoInterface {
 				mr.setRoomRating(rs.getInt(3));
 				mr.setRoomPerHourCost(rs.getInt(4));
 				mlist.add(mr);
+				System.out.println(mr.toString());
 			}
+			
+//			int managerId=m.getOrganiserId();
+//			pgetById=con.prepareStatement("select userCredits from user where userId=?");
+//			pgetById.setInt(1, managerId);
+//			ResultSet rs2=pgetById.executeQuery();
+//			int managerCredits=0;
+//			while(rs.next())
+//			{
+//				managerCredits=rs.getInt(1);
+//			}
+			
 			
 		} catch (SQLException e) {
 			
@@ -68,11 +86,6 @@ public class ManagerOrganizeDao implements ManagerOrganizeDaoInterface {
 		return mlist;
 	}
 
-	
-	@Override
-	public int getCreditsDao(User u) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 }

@@ -34,4 +34,11 @@ public class ManagerBookService implements ManagerBookServiceInterface {
 	public void saveBookingInfo(Meeting m, String meetingRoomName, int managerId) {
 		mbd.storeBookingInfo(m, meetingRoomName, managerId);
 	}
+
+
+	@Override
+	public void decreaseManagerCredits(Meeting m, String meetingRoomName) {
+		mbd.decreaseUserCredits(m,meetingRoomName);
+		
+	}
 }

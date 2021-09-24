@@ -13,4 +13,6 @@ public interface ManagerBookServiceInterface {
 	public  void saveUser(ArrayList<String> members,int meetingId);	
 
 	public void saveBookingInfo(Meeting m, String meetingRoomName, int managerId);
+	
+	public void decreaseManagerCredits(Meeting m, String meetingRoomName);
 }

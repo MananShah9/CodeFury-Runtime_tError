@@ -9,9 +9,8 @@ import com.AMRApp.beans.User;
 public interface ManagerOrganizeDaoInterface {
 
 	
-	public ArrayList<MeetingRoom> getAvailableMeetingRooms(Meeting m, int noOfMembers); 
+	public ArrayList<MeetingRoom> getAvailableMeetingRooms(Meeting m, int noOfMembers, int duration); 
 	
-	public int getCreditsDao(User u);
 	
 	
 }

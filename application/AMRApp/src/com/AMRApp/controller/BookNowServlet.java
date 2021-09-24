@@ -23,6 +23,8 @@ public class BookNowServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		String meetingRoomName= request.getParameter("MeetingRoomName");
+		
 		ArrayList<MeetingRoom> mlist = (ArrayList<MeetingRoom>) request.getAttribute("meetingRoomList");
 		
 		Meeting m = (Meeting) request.getAttribute("meetingInfo");
@@ -35,6 +37,9 @@ public class BookNowServlet extends HttpServlet {
 		
 		mBook.saveUser(meetParticipants, meetingId);
 		
+		mBook.saveBookingInfo(m, meetingRoomName, m.getOrganiserId());
+	
+		mBook.decreaseManagerCredits(m, meetingRoomName);
 		
 	//	mBook.saveBookingInfo(mlist,m);
 		
