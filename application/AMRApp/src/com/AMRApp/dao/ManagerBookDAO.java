@@ -164,6 +164,7 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 		pList.setInt(3, m.getOrganiserId());
 		
     	pList.executeUpdate();
+    	
     } catch (Exception e) {
 		e.printStackTrace();
 	}
