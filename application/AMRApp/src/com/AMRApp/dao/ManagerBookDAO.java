@@ -115,7 +115,7 @@ con=ConnectionManager.getConnection();
 		con=ConnectionManager.getConnection();
 		try {
 			
-			PreparedStatement ps = con.prepareStatement("insert into bookinginfo(meetingRoomName, BookingDate, startTime, endTime, organiserId) VALUES(?,?,?,?,?,?) ");
+			PreparedStatement ps = con.prepareStatement("insert into bookinginfo(meetingRoomName, BookingDate, startTime, endTime, organiserId) VALUES(?,?,?,?,?) ");
 
 			ps.setString(1, meetingRoomName);
 			

@@ -16,19 +16,17 @@
 <script type="text/javascript">
 function highlightMeetingRoom()
 {
+	let meetingName = document.querySelector('.card-header').getAttribute('data-name')
+	
+	document.getElementById("meetingRoomName").value=meetingName;
 	document.querySelector('.card').style.border = "thick solid black"
 	
-	document.querySelector('.organizeMeeting').style.visibility="visible"
 	
-			let meetingName = document.querySelector('.card-header').getAttribute('data-name')
+	
 			let meetingCapacity = document.querySelector('.card-title').getAttribute('data-capacity')
 			let meetingRatings = document.querySelector('.card-text').getAttribute('data-ratings')
+				
 			
-			document.querySelector('.organizeMeeting').setAttribute('data-name',meetingName)
-			document.querySelector('.organizeMeeting').setAttribute('data-capcity',meetingCapacity)
-			document.querySelector('.organizeMeeting').setAttribute('data-ratings',meetingRatings)
-			
-			document.getElementById("meetingRoomName").value=meetingName;
 
 			
 }
@@ -37,7 +35,7 @@ function highlightMeetingRoom()
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
-	<form method="get" action="BookNowServlet">
+	<form method="post" action="BookNowServlet">
 	 <div class="container meeting-rooms">
         <h2 style="margin-top: 75px; text-align: center">Available Meeting Rooms</h2>
         <div class="row mt-5">
