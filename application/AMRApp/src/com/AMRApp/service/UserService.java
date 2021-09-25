@@ -15,17 +15,6 @@ public UserService () {
 	}
 	@Override
 	public User userLogin(User user) {
-		// TODO Auto-generated method stub
-	
 		return User_object.logInUser ( user );
-		
 	}
-
-	@Override
-	public void manageCredits(int userId) {
-		// TODO Auto-generated method stub
-		User_object.manageCreditsDao(userId);
-
-	}
-
 }

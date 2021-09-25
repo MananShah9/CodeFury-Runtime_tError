@@ -11,5 +11,4 @@ public interface ManagerHomePageServiceInterface {
 	
 	public User ManagerInfo(int userId);
 	
-	
 }

@@ -15,16 +15,12 @@ public class ManagerCreditsRenewDao implements ManagerCreditsRenewDaoInterface {
 	
 	@Override
 	public void renewCredits() {
-		// TODO Auto-generated method stub
-		
+
 		try {
 			con = ConnectionManager.getConnection();
 			pList=con.prepareStatement("update user set userCredits=2000 where userRole='Manager'");
-		
-			
 			pList.executeUpdate();
 
-			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -32,8 +28,5 @@ public class ManagerCreditsRenewDao implements ManagerCreditsRenewDaoInterface {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-
 }

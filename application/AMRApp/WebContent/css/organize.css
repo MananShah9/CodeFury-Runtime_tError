@@ -1,9 +1,24 @@
 .heading-organize{
-	margin-top: 100px;
+	margin-top: 80px;
 	text-align: center;
+}
+
+.container
+{
+	margin-top: 5px;
 }
 
 #errorMeetingTitle, #errorMeetingDate, #timeError
 {
 	color: red;
+}
+
+.content-container input
+{
+	margin-left: 15px;
+}
+
+.search-available-rooms
+{
+	margin-left: 80%;
 }

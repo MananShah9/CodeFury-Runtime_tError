@@ -9,6 +9,7 @@ function giveMeetingData(event)
 	else
 	{
 		document.getElementById("selectmeetingRoomError").innerHTML = null
+		window.location.href = "bookTimeSlot.jsp"
 	}
 }
 

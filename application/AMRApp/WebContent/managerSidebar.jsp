@@ -24,16 +24,7 @@
 	
 	<%
 			int userId=(int)session.getAttribute("userId");
-			
-			//MeetingRoomsServiceInterface s=MeetingServiceFactory.createObject("admin service");
-		//	User user=s.managerInfoService(u);
-			
-		
-			//LogServiceInterface ls=LogServiceFactory.createObject();
-			//Time t=ls.displayLastLoginService(u);
 			ManagerHomePageServiceInterface s=new ManagerHomePageService();
-			 //user=s.listManagerMeeting(u);
-			 
 			 User user = s.ManagerInfo(userId);
 			 
 			 

@@ -17,31 +17,17 @@ import com.AMRApp.factory.UserFactory;
 import com.AMRApp.factory.UserServiceFactory;
 import com.AMRApp.service.UserServiceInterface;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
     public LoginServlet() {
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 //	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		// TODO Auto-generated method stub
 //		
@@ -121,8 +107,6 @@ public class LoginServlet extends HttpServlet {
 //	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		try {
 			
 			User user = UserFactory.createObject ();		
@@ -157,25 +141,14 @@ public class LoginServlet extends HttpServlet {
 					
 					System.out.println(user.getUserEmail()+" "+user.getUserName());
 					request.getRequestDispatcher("admin.jsp").forward ( request, response );
-					/*int b=1;
-					if(b==1) {
-						
-						request.setAttribute("mm", b);
-						
-						RequestDispatcher rd=getServletContext().getRequestDispatcher("/admin.jsp");
-						rd.forward(request, response);
-					}*/
 					
 				} else {
 					
-					//login_object.manageCredits(user.getUserId());
-					
 					RequestDispatcher rd=request.getRequestDispatcher("manager.jsp");
 					rd.forward(request, response);
-
 				}
 				
-			} else {	// if user does not exists redirect to login page
+			} else {
 				
 				String login_message = "<div class='alert alert-danger alert-dismissible fade in'>" +
 						"<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
@@ -195,10 +168,5 @@ public class LoginServlet extends HttpServlet {
 			
 			System.out.println(e);
 		}
-		
-	
 	}
-	
-
-	
 }

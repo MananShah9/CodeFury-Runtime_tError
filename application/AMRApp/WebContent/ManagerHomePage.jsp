@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
 <%@ page isELIgnored="false"%>
@@ -51,39 +51,19 @@
 
 	<%
 			int userId=(int)session.getAttribute("userId");
-			
-			//MeetingRoomsServiceInterface s=MeetingServiceFactory.createObject("admin service");
-		//	User user=s.managerInfoService(u);
-			
-		
-			//LogServiceInterface ls=LogServiceFactory.createObject();
-			//Time t=ls.displayLastLoginService(u);
 			ManagerHomePageServiceInterface s=new ManagerHomePageService();
-			 //user=s.listManagerMeeting(u);
-			 
-			 User user = s.ManagerInfo(userId);
-			 
-			 
+			User user = s.ManagerInfo(userId);	 
 	%>
 
-
-	
-
 	<!-- DISPLAY MEETING LISTS -->
-
 
 	<div class="container">
 
 		<!-- Displaying list of meetings scheduled by the manager  -->
-
 		<h2>Scheduled Meetings</h2>
-
 		<table class="table table-striped table-hover">
-
 			<thead>
-
 				<tr>
-
 					<th>Meeting Name</th>
 
 					<th>Meeting Room</th>
@@ -101,8 +81,6 @@
 			</thead>
 
 			<tbody>
-
-
 
 				<%
 	// getting the details of scheduled meetings
@@ -124,17 +102,8 @@
 			</tbody>
 		</table>
 	</div>
-
-
-	
 	<a href="ManagerInfoDisplayPage.jsp" role="button" data-toggle="modal">
 							Manager Information </a>
-	
-	<!--  <button type="button" action="ManagerInfoDisplayPage.jsp">Manager Information </button>
-	-->
-
-	
-
 </body>
 
-</html>
+</html> --%>

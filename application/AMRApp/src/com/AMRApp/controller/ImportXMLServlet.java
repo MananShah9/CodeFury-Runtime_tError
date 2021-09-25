@@ -88,8 +88,10 @@ public class ImportXMLServlet extends HttpServlet {
 					int credits;
 					if (userRole.equals("Manager")) {
 						credits = 2000;
+						user.setUserRole(userRole);
 					} else if (userRole.equals("Admin") || userRole.equals("Member")) {
 						credits = 0;
+						user.setUserRole(userRole);
 					} else {
 						System.out.println("Invalid USer type");
 						continue;

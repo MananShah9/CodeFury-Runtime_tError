@@ -8,8 +8,6 @@ public class ManagerCreditsRenew implements ManagerCreditsRenewInterface {
 	
 	@Override
 	public void renewCredits() {
-		// TODO Auto-generated method stub
-		
 		mdao.renewCredits();
 	}
 

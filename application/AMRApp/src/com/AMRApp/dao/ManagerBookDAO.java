@@ -147,7 +147,7 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
     	
     	int durationHours=Integer.parseInt(m.getEndTime().substring(0,2))-Integer.parseInt( m.getStartTime().substring(0,2));
     	
-    	int durationMinutes=Integer.parseInt(m.getEndTime().substring(2))-Integer.parseInt( m.getStartTime().substring(2));
+    	int durationMinutes=Integer.parseInt(m.getEndTime().substring(3))-Integer.parseInt( m.getStartTime().substring(3));
     	
     	if(durationMinutes!=0)
     		++durationHours;

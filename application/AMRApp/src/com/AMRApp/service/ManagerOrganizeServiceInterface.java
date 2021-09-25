@@ -9,10 +9,4 @@ import com.AMRApp.beans.User;
 public interface ManagerOrganizeServiceInterface {
 
 	public ArrayList<MeetingRoom> listValidMeetingRooms(Meeting m, int nom,int duration); 
-	// add 2 exceptions NotEnoughCreditsException, MeetingRoomAlreadyBookedException.
-	
-
-
-	
-	
 }

@@ -4,7 +4,7 @@ function validateMeetingType()
 	let meetingType = document.getElementById("meetingType").value;
 	if(meetingType=="")
 		{
-			document.getElementById("errorMeetingType").innerHTML = "Kindly select the meeting type"
+			document.getElementById("errorMeetingType").innerHTML = "Kindly select the meeting type!"
 		}
 	else{
 		document.getElementById("errorMeetingType").innerHTML = ""
@@ -18,7 +18,7 @@ function validateMeetingTitle(){
 	let meetingTitle = document.getElementById("meetingTitle").value;
 	if(meetingTitle=="")
 		{
-		document.getElementById("errorMeetingTitle").innerHTML = "Kindly give the meeting title"
+		document.getElementById("errorMeetingTitle").innerHTML = "Kindly give the meeting title!"
 		}
 	else{
 		document.getElementById("errorMeetingTitle").innerHTML = ""
@@ -35,7 +35,7 @@ function validateMeetingDate(){
 	var selectedDate = new Date(meetingDate);
 	   var now = new Date();
 	   if (selectedDate < now) {
-		   document.getElementById("errorMeetingDate").innerHTML = "Date must be in the future"
+		   document.getElementById("errorMeetingDate").innerHTML = "Date must be in the future!"
 	   }
 	   else{
 		   document.getElementById("errorMeetingDate").innerHTML = ""
@@ -101,5 +101,56 @@ function validateTime(){
 	{
 		document.getElementById("durationHrsMin").innerHTML = durationHrsMin
 	}
+	
+}
+
+
+    function addAtleastOne(event)
+    {
+    	event.preventDefault()
+		var membersList = document.querySelectorAll(".members")
+		var count = 0;
+		for(let i=0;i<membersList.length;i++)
+		{
+			if(membersList[i].checked){
+				count = count+1
+			}
+		}
+		
+		if (count < 1){
+			document.getElementById("membersContainer").innerHTML = "Select atleast a Member!"
+		}
+		else
+		{
+			document.getElementById("membersContainer").innerHTML = ""
+		}
+	
+
+    		
+    }
+
+
+
+function checkMembersAddedOrNot(event)
+{
+	event.preventDefault()
+	var membersList = document.querySelectorAll(".members")
+		var count = 0;
+		for(let i=0;i<membersList.length;i++)
+		{
+			if(membersList[i].checked){
+				count = count+1
+			}
+		}
+		
+		if (count < 1){
+			alert("Kindly select the Meeting Members!")
+			return false;
+		}
+		else
+		{
+			window.location.href = "/OrganizeMeetingServlet"
+			return true;
+		}
 	
 }

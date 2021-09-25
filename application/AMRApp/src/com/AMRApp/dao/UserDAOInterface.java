@@ -6,6 +6,4 @@ public interface UserDAOInterface {
 
 	User logInUser(User user);
 
-	void manageCreditsDao(int userId);
-
 }

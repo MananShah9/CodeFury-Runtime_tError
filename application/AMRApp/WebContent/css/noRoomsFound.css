@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+
+.sorry-image-container
+{
+	margin-top: 5%;
+	height: 20%;
+	width: 20%;
+	margin-left: 40%;
+}
+
+.sorry-image-container img
+{
+	height: 100%;
+	width: 100%;
+}
+
+.sorry-message
+{
+	text-align: center;
+	margin-top: 1%;
+}
+
+.home-page
+{
+	margin-top:3%;
+	text-align: center;
+}
+
+.home-page button
+{
+	margin-left: 4%;
+}
+
+

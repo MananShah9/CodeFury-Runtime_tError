@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 
-<link rel="stylesheet" href="../css/importUsers.css">
+<link rel="stylesheet" href="css/importUsers.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <title>Import Users</title>
 </head>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="users-container">
-    	<img src="../images/importUsers.png" alt="Import Users" />
+    	<img src="images/importUsers.png" alt="Import Users" />
     </div>
         <div class="container import-users-container">
             <div class="row">

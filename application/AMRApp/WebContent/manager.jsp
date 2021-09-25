@@ -22,22 +22,10 @@
 <body>
 
 <!-- -----Get the Meeting details organized by the Logged In Manager---- -->
-
 <%
 			int userId=(int)session.getAttribute("userId");
-			
-			//MeetingRoomsServiceInterface s=MeetingServiceFactory.createObject("admin service");
-		//	User user=s.managerInfoService(u);
-			
-		
-			//LogServiceInterface ls=LogServiceFactory.createObject();
-			//Time t=ls.displayLastLoginService(u);
 			ManagerHomePageServiceInterface s=new ManagerHomePageService();
-			 //user=s.listManagerMeeting(u);
-			 
-			 User user = s.ManagerInfo(userId);
-			 
-			 
+			User user = s.ManagerInfo(userId);	 
 	%>
  
 	<jsp:include page="managerSidebar.jsp"/>
@@ -91,8 +79,5 @@
 	    	<a href="organizemeeting.jsp">Organize Meeting</a>
 	    </section>
 	  </main>
-	  
-	 
-
 </body>
 </html>

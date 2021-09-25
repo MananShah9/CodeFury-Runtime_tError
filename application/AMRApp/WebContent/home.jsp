@@ -18,7 +18,7 @@ body {
 	
 	  <div class="timeline">
         <div class="timeline-container">
-            <img class="timeline-image" src="../images/timeline.jpeg" alt="Timeline Image">
+            <img class="timeline-image" src="images/timeline.jpeg" alt="Timeline Image">
             <div class="timeline-text">
                 <div class="initial">Automates the procedure of booking a </div>
                 <div class="name">MEETING ROOM</div>

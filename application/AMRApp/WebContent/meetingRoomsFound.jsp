@@ -23,6 +23,7 @@
         <div class="row mt-5">
 		<span style="color:red;" id="selectMeetingRoomError"></span>
 	<% 
+	System.out.println("hello jsp");
 	List<MeetingRoom> meetingRoomList=new ArrayList<MeetingRoom>();
 	meetingRoomList = (List<MeetingRoom>)request.getAttribute("meetingRoomList"); 
 	for(MeetingRoom meetingRoom:meetingRoomList){ %>

@@ -12,16 +12,10 @@ public class ManagerOrganizeService implements ManagerOrganizeServiceInterface {
 	ManagerOrganizeDaoInterface mod;
 	public ManagerOrganizeService() {
 		mod=new ManagerOrganizeDao();
-		
 	}
 
 	@Override
-
 	public ArrayList<MeetingRoom> listValidMeetingRooms(Meeting m, int nom,int duration) {
 		return  mod.getAvailableMeetingRooms(m, nom,duration);
 	}
-
-	
-	
-
 }

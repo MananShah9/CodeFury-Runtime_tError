@@ -5,9 +5,7 @@ public class WeeklyTask implements Runnable {
 
 @Override
 public void run() {
-   
-       
-    
+  
 }
 
 }
