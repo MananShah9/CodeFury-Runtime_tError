@@ -22,11 +22,9 @@ public class AdminGetRoom extends HttpServlet {
    
     public AdminGetRoom() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request,response);
 	}
 
@@ -38,15 +36,14 @@ public class AdminGetRoom extends HttpServlet {
 		try {
 			room.setRoomName( request.getParameter("meeting_name") ); // getting meeting name
 			
-			room.setRoomCapacity( Integer.parseInt ( request.getParameter ( "seating_capacity" ) ) ); // get seating capacity
+			room.setRoomCapacity( Integer.parseInt ( request.getParameter ( "seating_capacity" ) ) ); // getting seating capacity
 			
-			room.setOrganiser( session.getAttribute ( "user_id" ).toString() ); // to store who created the meeting
+			room.setOrganiser( session.getAttribute ( "userId" ).toString() ); // to store who created the meeting
 			
-			// get amenities List
 			
 			List <String> list = new ArrayList <String> (); 
 			
-			String amenity_list [] = request.getParameterValues( "amenitites" );	// store checkBoxes values 
+			String amenity_list [] = request.getParameterValues( "amenitites" );	// list to store amenities 
 			
 			for ( String temp : amenity_list ) {
 				
@@ -56,11 +53,11 @@ public class AdminGetRoom extends HttpServlet {
 				}
 			}
 			
-			room.setRoomAmenities(list); // setting amenity list
+			room.setRoomAmenities(list); 
 			
 			AdminGetRoomServiceInterface service = AdminGetRoomFactory.createServiceObject();
 			
-			if ( service.getRoom ( room ) == 1 ) {
+			if ( service.getRoom ( room.getRoomName() ) == 1 ) {
 				
 				String errorMessage = "<div class='alert alert-success alert-dismissible fade in'>" +
 						"<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +

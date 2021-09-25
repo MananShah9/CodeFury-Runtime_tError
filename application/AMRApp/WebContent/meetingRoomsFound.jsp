@@ -17,13 +17,12 @@
 <body>
 	<jsp:include page="header.jsp"/>
 	
-<form method = "POST">
+	<form method = "POST" action="bookTimeSlot.jsp">
 	 <div class="container meeting-rooms">
         <h2 style="margin-top: 75px; text-align: center">Available Meeting Rooms</h2>
         <div class="row mt-5">
 		<span style="color:red;" id="selectMeetingRoomError"></span>
 	<% 
-	System.out.println("hello jsp");
 	List<MeetingRoom> meetingRoomList=new ArrayList<MeetingRoom>();
 	meetingRoomList = (List<MeetingRoom>)request.getAttribute("meetingRoomList"); 
 	for(MeetingRoom meetingRoom:meetingRoomList){ %>
@@ -53,7 +52,7 @@
 
 	</div>
 </div>
-<button onclick="giveMeetingData(event)" style="float:right; margin-right: 25px;" type="submit" class="btn btn-success organizeMeeting">ORGANIZE</button>
+<button onclick="giveMeetingData(event)" style="float:right; margin-right: 25px; " type="submit" class="btn btn-success" id="organizeMeeting">ORGANIZE</button>
 </form>	 
 	
 	<jsp:include page="footer.jsp"/>

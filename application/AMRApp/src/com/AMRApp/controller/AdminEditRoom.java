@@ -29,34 +29,41 @@ public class AdminEditRoom extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		MeetingRoom room = new MeetingRoom ();
-		HttpSession session = request.getSession (false);
 		
 		try {
-			room.setRoomName( request.getParameter("meeting_name") ); // getting meeting name
-			
-			room.setRoomCapacity( Integer.parseInt ( request.getParameter ( "seating_capacity" ) ) ); // get seating capacity
-			
-			room.setOrganiser( session.getAttribute ( "user_id" ).toString() ); // to store who created the meeting
-			
-			// get amenities List
-			
-			List <String> list = new ArrayList <String> (); 
-			
-			String amenity_list [] = request.getParameterValues( "amenitites" );	// store checkBoxes values 
-			
-			for ( String temp : amenity_list ) {
-				
-				if ( temp != null ) {
-					
-					list.add(temp);
-				}
+		MeetingRoom room = new MeetingRoom();
+
+		HttpSession session = request.getSession(false);
+
+		room.setRoomName(request.getParameter("meetingname")); // getting meeting name
+		room.setRoomCapacity(Integer.parseInt(request.getParameter("seatingcapacity"))); // getting seating capacity
+		room.setOrganiser(session.getAttribute("name").toString()); //getting name
+		String meetingType = request.getParameter("meetingtype"); //getting type of meeting
+		
+		
+		List<String> list = new ArrayList<String>();
+
+		String amenity_list[] = request.getParameterValues("amenities"); // list to store amenities
+		for(int i=0; i<amenity_list.length;i++) {
+			System.out.println(amenity_list[i]);
+		}
+		System.out.println(request.getParameter("meetingname"));
+		System.out.println(request.getParameter("seatingcapacity"));
+		System.out.println(meetingType);
+		for (String temp : amenity_list) {
+
+			if (temp != null) {
+				list.add(temp);
 			}
-			
-			room.setRoomAmenities(list); // setting amenity list
+		}
+
+		room.setRoomAmenities(list); 
+
 			
 			AdminEditRoomServiceInterface service = AdminEditRoomFactory.createServiceObject ();
 			
+			// To check room is edit or not
+
 			if ( service.editRoom ( room ) == 1 ) {
 				
 				String errorMessage = "<div class='alert alert-success alert-dismissible fade in'>" +
@@ -66,7 +73,7 @@ public class AdminEditRoom extends HttpServlet {
 	
 				request.setAttribute ( "Admin_home_page_message", errorMessage );
 				
-				request.getRequestDispatcher("AdminHomePage.jsp").forward ( request, response );
+				request.getRequestDispatcher("admin.jsp").forward ( request, response );
 				
 			} else {
 				
@@ -77,7 +84,7 @@ public class AdminEditRoom extends HttpServlet {
 	
 				request.setAttribute ( "Admin_home_page_message", errorMessage );
 				
-				request.getRequestDispatcher("AdminHomePage.jsp").forward ( request, response );
+				request.getRequestDispatcher("admin.jsp").forward ( request, response );
 			}
 		}
 		catch (ServletException | IOException e) {

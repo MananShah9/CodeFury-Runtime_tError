@@ -19,6 +19,7 @@ import com.AMRApp.service.AdminCreateRoomServiceInterface;
 public class AdminCreateRoom extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//non-parameterized constructor
 	public AdminCreateRoom() {
 		super();
 	}
@@ -36,25 +37,29 @@ public class AdminCreateRoom extends HttpServlet {
 
 			HttpSession session = request.getSession(false);
 
-			room.setRoomName(request.getParameter("meeting_name")); // getting meeting name
-			room.setRoomCapacity(Integer.parseInt(request.getParameter("seating_capacity"))); // get seating capacity
-			room.setOrganiser(session.getAttribute("user_id").toString()); // to store who created the meeting
+			room.setRoomName(request.getParameter("meetingname")); // getting meeting name
+			room.setRoomCapacity(Integer.parseInt(request.getParameter("seatingcapacity"))); // getting seating capacity
+			room.setOrganiser(session.getAttribute("name").toString());// getting name
 
-			// get amenities List
 
 			List<String> list = new ArrayList<String>();
 
-			String amenity_list[] = request.getParameterValues("amenities"); // store checkBoxes values
+			String amenity_list[] = request.getParameterValues("amenities"); // list to store amenities
+			for(int i=0; i<amenity_list.length;i++) {
+				System.out.println(amenity_list[i]);
+			}
+			System.out.println(request.getParameter("meetingname"));
+			System.out.println(request.getParameter("seatingcapacity"));
 
 			for (String temp : amenity_list) {
 
 				if (temp != null) {
-
 					list.add(temp);
 				}
 			}
 
-			room.setRoomAmenities(list); // setting amenity list
+			room.setRoomAmenities(list);
+			
 
 			AdminCreateRoomServiceInterface service = AdminCreateRoomFactory.createServiceObject();
 
@@ -67,7 +72,7 @@ public class AdminCreateRoom extends HttpServlet {
 
 				request.setAttribute("Admin_home_page_message", errorMessage);
 
-				request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
+				request.getRequestDispatcher("admin.jsp").forward(request, response);
 
 			} else {
 
@@ -77,7 +82,7 @@ public class AdminCreateRoom extends HttpServlet {
 
 				request.setAttribute("Admin_home_page_message", errorMessage);
 
-				request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
+				request.getRequestDispatcher("admin.jsp").forward(request, response);
 			}
 		} catch (ServletException e) {
 			e.printStackTrace();

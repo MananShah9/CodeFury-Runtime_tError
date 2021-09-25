@@ -10,7 +10,7 @@ CREATE TABLE MeetingsAndMembers(id int PRIMARY KEY AUTO_INCREMENT, meetingId int
   CONSTRAINT fk_memid FOREIGN KEY (memberId) REFERENCES User(userId) ON DELETE CASCADE );
 
 CREATE TABLE MeetingRoom(meetingRoomName varchar(60) PRIMARY KEY, seatingCapacity int, ratings int,
-	perHourCost int);	
+	perHourCost int, organiser varchar(60));	
 	
 CREATE TABLE Amenities(amenityId int PRIMARY KEY AUTO_INCREMENT,projector int, wifi int, conCall int, whiteboard int,
  waterDispenser int, TV int, Coffee int,meetingRoomName varchar(60),

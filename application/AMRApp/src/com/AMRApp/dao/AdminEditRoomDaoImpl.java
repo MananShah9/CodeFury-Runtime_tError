@@ -12,124 +12,102 @@ public class AdminEditRoomDaoImpl implements AdminEditRoomDaoInterface {
 
 	@Override
 	public int editRoom(MeetingRoom room) {
-		// TODO Auto-generated method stub
 		PreparedStatement ps;
 		Connection con = null;
 
-		try { // get connection to database
-			con = ConnectionManager.getConnection();
+		try { 
+			con = ConnectionManager.getConnection(); // get connection to database
 
 			con.setAutoCommit(false); // initiate transaction
-
-			int per_hour_cost = 0; // to calculate per hour cost
-
-			// edit existing meeting room details
-
-			ps = con.prepareStatement("update MEETING_ROOM set seating_capacity = ? where unique_name = ?");
-
-			ps.setInt(1, room.getRoomCapacity());
-			ps.setString(2, room.getRoomName());
-
-			if (!(ps.executeUpdate() > 0)) {
-
-				con.rollback(); // roll back uncommitted changes
-
-				return 0; // unsuccessful insertion
-			}
-
-			// prepare query to delete data from room_amenities
-
-			ps = con.prepareStatement("delete from ROOM_AMENITIES where meeting_room_id = ?");
-
-			ps.setString(1, room.getRoomName());
-
-			if (!(ps.executeUpdate() > 0)) {
-
-				con.rollback(); // roll back uncommitted changes
-
-				return 0; // successful insertion
-			}
-
-			// insert new amenities
-
+			int credits = 0;
+			
+			//query to update the room's amenities
+			ps = con.prepareStatement("update Amenities set projector = ?,wifi = ?,conCall = ?,whiteboard = ?,waterDispenser = ?,TV = ?,Coffee = ? where meetingRoomName = ?");
+			ps.setInt(1, 0);
+			ps.setInt(2, 0);
+			ps.setInt(3, 0);
+			ps.setInt(4, 0);
+			ps.setInt(5, 0);
+			ps.setInt(6, 0);
+			ps.setInt(7, 0);
+			
 			for (String temp : room.getRoomAmenities()) {
 
-				// prepare query to enter data into ROOM AMENITIES database
+				switch (temp) {
+				case "Projector":
 
-				ps = con.prepareStatement("insert into ROOM_AMENITIES values (?, ?)");
+					ps.setInt(1, 1);
+					credits+=5;
+					break;
+				case "WiFi Connection":
 
-				ps.setString(1, room.getRoomName());
-				ps.setString(2, temp);
+					ps.setInt(2, 1);
+					credits+=10;
+					break;
+				case "Conference call facility":
 
-				if (!(ps.executeUpdate() > 0)) {
-
-					con.rollback(); // roll back uncommitted changes
-
-					return 0; // return 0 if unsuccessful insertion
+					ps.setInt(3, 1);
+					credits+=15;
+					break;
+				case "Whiteboard":
+					ps.setInt(4, 1);
+					credits+=5;
+					break;
+				case " Water dispenser":
+					ps.setInt(5, 1);
+					credits+=5;
+					break;
+					
+				case "TV":
+					credits+=10;
+					ps.setInt(6, 1);
+					break;
+					
+				case "Coffee Machine":
+					
+					ps.setInt(7, 1);
+					credits+=10;
+					break;
 				}
 			}
-
-			// get cost from table for new amenities
-
-			int size = room.getRoomAmenities().size();
-			size--;
-
-			String query = "select SUM(credit) from amenities where ";
-
-			for (String temp : room.getRoomAmenities()) {
-
-				query = query + "id = " + temp;
-
-				if (size != 0) {
-
-					query = query + " or ";
-					size--;
-				}
+			ps.setString(8, room.getRoomName());
+			ps.executeUpdate();
+			
+			if(room.getRoomCapacity()<=5) {
+				credits=0+credits;
 			}
-
+			else if(5<room.getRoomCapacity() && room.getRoomCapacity()<=10) {
+				credits+=10;
+			}
+			else {
+				credits+=20;
+			}
+			
+			room.setRoomPerHourCost(credits);
+			
+			String query = "update MeetingRoom set seatingCapacity = ?,perHourCost = ? where meetingRoomName = ?";
 			ps = con.prepareStatement(query);
-
-			ResultSet rs = ps.executeQuery(); // get cost
-
-			if (rs.next()) {
-
-				per_hour_cost = rs.getInt(1);
-
-			} else {
-
-				con.rollback(); // roll back uncommitted changes
-
-				return 0;
-			}
-
-			if (room.getRoomCapacity() > 5 && room.getRoomCapacity() <= 10) {
-
-				per_hour_cost += 10;
-
-			} else if (room.getRoomCapacity() > 10) {
-
-				per_hour_cost += 20;
-			}
-
-			// prepare query to enter data into ROOM AMENITIES database
-
-			ps = con.prepareStatement("update MEETING_ROOM set per_hour_cost = " + per_hour_cost
-					+ "  where unique_name = '" + room.getRoomName() + "'");
+			
+			ps.setInt(1,room.getRoomCapacity());
+			ps.setInt(2,room.getRoomPerHourCost());
+			ps.setString(3,room.getRoomName());
 
 			if (ps.executeUpdate() > 0) {
 
 				con.commit(); // commit transactions
 
-				return 1; // return on success
+				return 1;
 			}
 
-		} catch (SQLException  e) {
+			
+
+		} catch (SQLException e) {
 
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.closeConnection();
 		}
-		return 0;
+		return 1;
 
 	}
 

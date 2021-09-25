@@ -1,5 +1,7 @@
 package com.AMRApp.service;
 
+import java.util.List;
+
 import com.AMRApp.beans.MeetingRoom;
 import com.AMRApp.dao.AdminEditRoomDaoInterface;
 import com.AMRApp.dao.AdminGetRoomDaoInterface;
@@ -18,6 +20,12 @@ public class AdminGetRoomServiceImpl implements AdminGetRoomServiceInterface{
 		
 		return dao.getRoom(room);
 	}
+
+	@Override
+	public List<MeetingRoom> getAllRooms() {
+		return dao.getAllRooms();
+	}
+	
 	
 	
 
