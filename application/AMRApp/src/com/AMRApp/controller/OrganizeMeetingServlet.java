@@ -46,14 +46,16 @@ public class OrganizeMeetingServlet extends HttpServlet {
 
 		
 		//Will come from session later
-		int managerId=1; 
+		int managerId=9; 
 		Meeting m = new Meeting();
 		m.setMeetingTitle(meetingTitle);
 		m.setMeetingType(meetingType);
-		m.setMeetingDate("20-10-2021");
-		m.setStartTime("13:00");
-		m.setEndTime("16:00");
+		m.setMeetingDate(meetingDate);
+		m.setStartTime(meetingStartTime);
+		m.setEndTime(meetingEndTime);
 		m.setOrganiserId(managerId);
+		
+		System.out.println(m.toString());
 		
 		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
 		ArrayList<MeetingRoom> mlist=mOrganizeService.listValidMeetingRooms(m,meetingMembers.length,duration);
