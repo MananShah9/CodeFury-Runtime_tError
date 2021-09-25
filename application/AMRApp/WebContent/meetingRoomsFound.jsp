@@ -17,7 +17,7 @@
 <body>
 	<jsp:include page="header.jsp"/>
 	
-	<form method = "POST" action="bookTimeSlot.jsp">
+	<form method = "POST" action="/BookTimeServlet">
 	 <div class="container meeting-rooms">
         <h2 style="margin-top: 75px; text-align: center">Available Meeting Rooms</h2>
         <div class="row mt-5">
