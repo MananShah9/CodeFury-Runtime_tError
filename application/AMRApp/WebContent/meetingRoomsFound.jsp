@@ -13,18 +13,40 @@
 <style>
 
 </style>
+<script type="text/javascript">
+function highlightMeetingRoom()
+{
+	document.querySelector('.card').style.border = "thick solid black"
+	
+	document.querySelector('.organizeMeeting').style.visibility="visible"
+	
+			let meetingName = document.querySelector('.card-header').getAttribute('data-name')
+			let meetingCapacity = document.querySelector('.card-title').getAttribute('data-capacity')
+			let meetingRatings = document.querySelector('.card-text').getAttribute('data-ratings')
+			
+			document.querySelector('.organizeMeeting').setAttribute('data-name',meetingName)
+			document.querySelector('.organizeMeeting').setAttribute('data-capcity',meetingCapacity)
+			document.querySelector('.organizeMeeting').setAttribute('data-ratings',meetingRatings)
+			
+			document.getElementById("meetingRoomName").value=meetingName;
+
+			
+}
+
+</script>
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
-	
-	<form method = "POST" action="/BookTimeServlet">
+	<form method="get" action="BookNowServlet">
 	 <div class="container meeting-rooms">
         <h2 style="margin-top: 75px; text-align: center">Available Meeting Rooms</h2>
         <div class="row mt-5">
 		<span style="color:red;" id="selectMeetingRoomError"></span>
+	
 	<% 
 	List<MeetingRoom> meetingRoomList=new ArrayList<MeetingRoom>();
-	meetingRoomList = (List<MeetingRoom>)request.getAttribute("meetingRoomList"); 
+	
+	meetingRoomList = (ArrayList<MeetingRoom>)session.getAttribute("meetingRoomList"); 
 	for(MeetingRoom meetingRoom:meetingRoomList){ %>
 	
             <div class="col-lg-4 col-xs-6 col-sm-6">
@@ -52,10 +74,11 @@
 
 	</div>
 </div>
-<button onclick="giveMeetingData(event)" style="float:right; margin-right: 25px; " type="submit" class="btn btn-success" id="organizeMeeting">ORGANIZE</button>
-</form>	 
+<input type="hidden" id="meetingRoomName" name="meetingRoomName"/>
+<input type="submit" style="float:right; margin-right: 25px; "  class="btn btn-success" id="organizeMeeting">ORGANIZE
 	
 	<jsp:include page="footer.jsp"/>
 	<script type="text/javascript" src="js/meetingRoomsFound.js"></script>
+</form>
 </body>
 </html>

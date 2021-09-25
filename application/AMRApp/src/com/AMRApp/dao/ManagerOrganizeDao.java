@@ -43,6 +43,13 @@ public class ManagerOrganizeDao implements ManagerOrganizeDaoInterface {
 			pList=con.prepareStatement(query);
 			
 			MeetingRoom mr=null;
+			System.out.println("---------------------");
+			
+				System.out.println(m.toString());
+				System.out.println(noOfMembers);
+				System.out.println(duration);
+
+			System.out.println("---------------------");
 			pList.setInt(1, noOfMembers);
 			pList.setString(2, m.getMeetingDate());
 			pList.setString(3, m.getEndTime());
@@ -62,9 +69,13 @@ public class ManagerOrganizeDao implements ManagerOrganizeDaoInterface {
 				mr.setRoomRating(rs.getInt(3));
 				mr.setRoomPerHourCost(rs.getInt(4));
 				mlist.add(mr);
-				System.out.println(mr.toString());
+//				System.out.println(mr.toString());
 			}
-			
+			System.out.println("+++++++++++++++++++");
+			for (MeetingRoom mr1 : mlist)
+				System.out.println(mr1);
+			System.out.println("+++++++++++++++++++");
+return mlist;
 //			int managerId=m.getOrganiserId();
 //			pgetById=con.prepareStatement("select userCredits from user where userId=?");
 //			pgetById.setInt(1, managerId);

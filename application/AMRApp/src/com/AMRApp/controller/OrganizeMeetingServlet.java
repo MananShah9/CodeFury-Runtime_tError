@@ -56,9 +56,12 @@ public class OrganizeMeetingServlet extends HttpServlet {
     	
 		ManagerOrganizeServiceInterface mOrganizeService = new ManagerFactory().getServiceInstanceOrganize();
 		ArrayList<MeetingRoom> mlist=mOrganizeService.listValidMeetingRooms(m,meetingMembers.length,durationHours);
-        request.setAttribute("meetingRoomList",mlist);
-        request.setAttribute("meetingInfo",m);
-        request.setAttribute("meetParticipants",temp);
+		
+		for (MeetingRoom mr1 : mlist)
+		System.out.println(mr1);
+        session.setAttribute("meetingRoomList",mlist);
+        session.setAttribute("meetingInfo",m);
+        session.setAttribute("meetParticipants",temp);
         RequestDispatcher rd = request.getRequestDispatcher("meetingRoomsFound.jsp");
         rd.forward(request, response);
         System.out.println("hello servlet");

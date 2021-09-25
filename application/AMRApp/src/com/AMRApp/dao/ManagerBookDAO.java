@@ -50,9 +50,7 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 				e.printStackTrace();
 			}
 			
-			con.commit();
 			
-			con.setAutoCommit(true);
 			
 		} catch (SQLException e) 
 		{
@@ -73,7 +71,8 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 		int id=0;
 		try {
 
-
+System.out.println(m.toString());
+con=ConnectionManager.getConnection();
 			PreparedStatement ps = con.prepareStatement("insert into meeting (meetingtitle, organisedBy,meetingDate,startTime,endTime,meetingType) VALUES(?,?,?,?,?,?) ", Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, m.getMeetingTitle());
@@ -88,7 +87,7 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 			
 			ps.setString(6, m.getMeetingType());
 
-			ps.executeQuery();
+			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys(); // get the generated key
 			
@@ -113,7 +112,7 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 	@Override
 	public void storeBookingInfo(Meeting m, String meetingRoomName, int managerId) 
 	{
-		
+		con=ConnectionManager.getConnection();
 		try {
 			
 			PreparedStatement ps = con.prepareStatement("insert into bookinginfo(meetingRoomName, BookingDate, startTime, endTime, organiserId) VALUES(?,?,?,?,?,?) ");
@@ -128,7 +127,7 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 			
 			ps.setInt(5, managerId);
 
-			ps.executeQuery();
+			ps.executeUpdate();
 
 
 		} catch (SQLException e) {
@@ -140,7 +139,8 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 
 	@Override
 	public void decreaseUserCredits(Meeting m, String meetingRoomName) {
-		
+		con=ConnectionManager.getConnection();
+
 	
     
     try {

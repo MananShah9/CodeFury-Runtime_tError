@@ -20,6 +20,7 @@ public class ManagerBookService implements ManagerBookServiceInterface {
 
 	@Override
 	public int saveMeetingService(Meeting m) {
+		System.out.println(m.toString());
 		return mbd.storeMeeting(m);
 	}
 	

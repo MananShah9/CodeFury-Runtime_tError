@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.AMRApp.beans.Meeting;
 import com.AMRApp.beans.MeetingRoom;
@@ -23,18 +24,23 @@ public class BookNowServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String meetingRoomName= request.getParameter("MeetingRoomName");
+		String meetingRoomName= request.getParameter("meetingRoomName");
 		
-		ArrayList<MeetingRoom> mlist = (ArrayList<MeetingRoom>) request.getAttribute("meetingRoomList");
-		
-		Meeting m = (Meeting) request.getAttribute("meetingInfo");
+		HttpSession session = request.getSession (); //Creating Session
+
+		Meeting m = (Meeting) session.getAttribute("meetingInfo");
 				
-		ArrayList<String> meetParticipants = (ArrayList<String>) request.getAttribute("meetParticipants");
+		ArrayList<String> meetParticipants = (ArrayList<String>) session.getAttribute("meetParticipants");
 		
 		ManagerBookServiceInterface mBook = new ManagerFactory().getServiceInstanceBook();
 		
 		//ManagerBookServiceInterface mBook = new ManagerBookService();
+		System.out.println(meetingRoomName);
 		
+		System.out.println("++++++++++++++++++++++++++++++++");
+		for(String strMp : meetParticipants) {
+			System.out.println(strMp);
+		}
 		int meetingId = mBook.saveMeetingService(m);	
 		
 		mBook.saveUser(meetParticipants, meetingId);
