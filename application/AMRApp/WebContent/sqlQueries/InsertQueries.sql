@@ -25,9 +25,9 @@ INSERT INTO Meeting( meetingtitle, organisedBy, meetingDate, startTime, endTime,
  
  MeetingRoom Table:
  
-INSERT INTO MeetingRoom Values ("Meeting Room 1", 15, 4, 30);
+INSERT INTO MeetingRoom Values ("Meeting Room 1", 15, 4, 30, "Tejas");
 
- INSERT INTO MeetingRoom Values ("Meeting Room 2", 10, 5, 20);
+ INSERT INTO MeetingRoom Values ("Meeting Room 2", 10, 5, 20, "Tejas");
  
  Amenities Table:
  
