@@ -18,7 +18,7 @@ public class AdminCreateRoomDaoImpl implements AdminCreateRoomDaoInterface {
 		PreparedStatement ps,psm;
 		Connection con = null;
 		try {
-			System.out.println("Try tk phuch rha hai");
+			
 			
 			con = ConnectionManager.getConnection(); // get connection to database
 
@@ -37,7 +37,7 @@ public class AdminCreateRoomDaoImpl implements AdminCreateRoomDaoInterface {
 			psm.setString(4,room.getOrganiser());
 			
 			psm.executeUpdate();
-			System.out.println("Fuck this shit 1");	
+		
 			//con.commit();
 			
 			System.out.println("In Dao");
@@ -119,7 +119,7 @@ public class AdminCreateRoomDaoImpl implements AdminCreateRoomDaoInterface {
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.out.println("Catch me ja rha hai bc");
+			
 			e.printStackTrace();
 		} finally {
 			try {
