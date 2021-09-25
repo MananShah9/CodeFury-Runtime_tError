@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.AMRApp.beans.Meeting;
 import com.AMRApp.beans.MeetingRoom;
+import com.AMRApp.factory.ManagerFactory;
 import com.AMRApp.service.ManagerOrganizeService;
 import com.AMRApp.service.ManagerOrganizeServiceInterface;
 
@@ -53,7 +54,7 @@ public class OrganizeMeetingServlet extends HttpServlet {
     	if(durationMinutes!=0)
     		++durationHours;
     	
-		ManagerOrganizeServiceInterface mOrganizeService = new ManagerOrganizeService();
+		ManagerOrganizeServiceInterface mOrganizeService = new ManagerFactory().getServiceInstanceOrganize();
 		ArrayList<MeetingRoom> mlist=mOrganizeService.listValidMeetingRooms(m,meetingMembers.length,durationHours);
         request.setAttribute("meetingRoomList",mlist);
         request.setAttribute("meetingInfo",m);

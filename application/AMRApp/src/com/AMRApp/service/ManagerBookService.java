@@ -6,16 +6,15 @@ import com.AMRApp.beans.Meeting;
 import com.AMRApp.beans.User;
 import com.AMRApp.dao.ManagerBookDAO;
 import com.AMRApp.dao.ManagerBookDAOInterface;
+import com.AMRApp.factory.ManagerFactory;
 
 public class ManagerBookService implements ManagerBookServiceInterface {
 	
-	ManagerBookDAOInterface mbd;
-	
-	
+	ManagerBookDAOInterface mbd;	
 	
 	public ManagerBookService() {
-		super();
-		mbd = new ManagerBookDAO();
+		
+		mbd = new ManagerFactory().getDaoInstanceBook();
 	}
 
 

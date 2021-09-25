@@ -6,14 +6,14 @@ import com.AMRApp.beans.Meeting;
 import com.AMRApp.beans.User;
 import com.AMRApp.dao.ManagerHomePageDAO;
 import com.AMRApp.dao.ManagerHomePageDAOInterface;
-import com.AMRApp.factory.Factory;
+import com.AMRApp.factory.ManagerFactory;
 
 public class ManagerHomePageService implements ManagerHomePageServiceInterface {
 
 	ManagerHomePageDAOInterface mdao= null;
 	public ManagerHomePageService()
 	{
-		mdao= new ManagerHomePageDAO();	
+		mdao = new ManagerFactory().getDaoInstanceHomePage();
 	}
 
 	@Override

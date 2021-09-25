@@ -2,6 +2,7 @@
 	<!-- Importing ConnectionManager Modules -->
 
 	<%@ page import="java.sql.Connection"%>
+	<%@ page import="com.AMRApp.factory.*"%>
 	<%@ page import="com.AMRApp.service.*"%>
 	<%@ page import="com.AMRApp.beans.*"%>
 	<%@ page import="java.sql.DriverManager"%>
@@ -24,7 +25,7 @@
 <!-- -----Get the Meeting details organized by the Logged In Manager---- -->
 <%
 			int userId=(int)session.getAttribute("userId");
-			ManagerHomePageServiceInterface s=new ManagerHomePageService();
+			ManagerHomePageServiceInterface s= new ManagerFactory().getServiceInstanceHomePage();
 			User user = s.ManagerInfo(userId);	 
 	%>
  

@@ -7,11 +7,12 @@ import com.AMRApp.beans.MeetingRoom;
 import com.AMRApp.beans.User;
 import com.AMRApp.dao.ManagerOrganizeDao;
 import com.AMRApp.dao.ManagerOrganizeDaoInterface;
+import com.AMRApp.factory.ManagerFactory;
 
 public class ManagerOrganizeService implements ManagerOrganizeServiceInterface {
 	ManagerOrganizeDaoInterface mod;
 	public ManagerOrganizeService() {
-		mod=new ManagerOrganizeDao();
+		mod = new ManagerFactory().getDaoInstanceOrganize();
 	}
 
 	@Override

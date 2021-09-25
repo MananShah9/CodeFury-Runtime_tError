@@ -1,6 +1,6 @@
 package com.AMRApp.service;
 
-public interface ManagerCreditsRenewInterface {
+public interface ManagerCreditsRenewServiceInterface {
 
 	public void renewCredits();
 	

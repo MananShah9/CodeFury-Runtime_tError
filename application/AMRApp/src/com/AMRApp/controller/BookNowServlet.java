@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.AMRApp.beans.Meeting;
 import com.AMRApp.beans.MeetingRoom;
-import com.AMRApp.service.ManagerBookService;
+import com.AMRApp.factory.ManagerFactory;
 import com.AMRApp.service.ManagerBookServiceInterface;
 
 
@@ -31,7 +31,9 @@ public class BookNowServlet extends HttpServlet {
 				
 		ArrayList<String> meetParticipants = (ArrayList<String>) request.getAttribute("meetParticipants");
 		
-		ManagerBookServiceInterface mBook = new ManagerBookService();
+		ManagerBookServiceInterface mBook = new ManagerFactory().getServiceInstanceBook();
+		
+		//ManagerBookServiceInterface mBook = new ManagerBookService();
 		
 		int meetingId = mBook.saveMeetingService(m);	
 		
