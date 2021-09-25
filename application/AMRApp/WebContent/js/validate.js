@@ -149,7 +149,7 @@ function checkMembersAddedOrNot(event)
 		}
 		else
 		{
-			window.location.href = "/OrganizeMeetingServlet"
+			document.getElementById('organizeMeetingForm').submit()
 			return true;
 		}
 	
