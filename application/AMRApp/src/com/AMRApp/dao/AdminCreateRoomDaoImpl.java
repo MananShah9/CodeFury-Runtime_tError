@@ -22,7 +22,6 @@ public class AdminCreateRoomDaoImpl implements AdminCreateRoomDaoInterface {
 			
 			con = ConnectionManager.getConnection(); // get connection to database
 
-			//con.setAutoCommit(false); // initiate transaction
 
 			int credits = 0; // to calculate per hour cost(setting credit to zero)
 		 
@@ -117,12 +116,8 @@ public class AdminCreateRoomDaoImpl implements AdminCreateRoomDaoInterface {
 			ps.setInt(1,room.getRoomPerHourCost());
 			ps.setString(2,room.getRoomName());
 			
-			if (ps.executeUpdate() > 0) {
-
-				//con.commit(); // commit transactions
-
-				return 1;
-			}
+			ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			System.out.println("Catch me ja rha hai bc");
 			e.printStackTrace();
