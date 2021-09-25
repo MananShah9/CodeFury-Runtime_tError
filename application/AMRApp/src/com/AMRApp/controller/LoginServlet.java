@@ -42,6 +42,84 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		// TODO Auto-generated method stub
+//		
+//		try {
+//			
+//			User user = UserFactory.createObject ();		
+//			user.setUserId(Integer.parseInt(( request.getParameter ( "userId" ) ))); // Getting User Credentials
+//			user.setUserPass( request.getParameter ( "userPass" ) );
+//			
+//			UserServiceInterface login_object = UserServiceFactory.createObject ();
+//			
+//			user = login_object.userLogin ( user );	//Validating User
+//			
+//			if ( user != null ) { 
+//				
+//				HttpSession session = request.getSession (); //Creating Session
+//								
+//				session.setAttribute ( "userId", user.getUserId());
+//				session.setAttribute ( "name", user.getUserName());
+//				
+//				session.setAttribute ( "email", user.getUserEmail());
+//				session.setAttribute ( "phone", user.getUserPhone());
+//				
+//				session.setAttribute ( "role", user.getUserRole());
+//				
+//				System.out.println(user.getUserRole());
+//
+//				if ( user.getUserRole().equals ( "Member" ) ) {
+//					
+//					request.getRequestDispatcher("member.jsp").forward ( request, response );
+//					
+//				} else if ( user.getUserRole().equals ( "Admin" ) ) {
+//					
+//					request.getRequestDispatcher("AdminHomePage.jsp").forward ( request, response );
+//					
+//				} else {
+//					
+//					//login_object.manageCredits(user.getUserId());
+//					
+//					
+//					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+//					    	 
+//			        LocalDate dt = LocalDate.now();
+//			  
+//			       String temp =  dtf.format(dt);
+//			        
+//			        System.out.println(dt.getDayOfWeek());
+//			        
+//					
+//					RequestDispatcher rd=request.getRequestDispatcher("manager.jsp");
+//					rd.forward(request, response);
+//
+//				}
+//				
+//			} else {	// if user does not exists redirect to login page
+//				
+//				String login_message = "<div class='alert alert-danger alert-dismissible fade in'>" +
+//						"<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+//						"<strong> User Not Found </strong>" + 
+//						"</div>";
+//				
+//				request.setAttribute ( "login_message", login_message );
+//				
+//				request.getRequestDispatcher("login.jsp").forward ( request, response );
+//			}
+//		}
+//		catch (ServletException | IOException e) {
+//			
+//			System.out.println(e);
+//		}
+//		catch (Exception e) {
+//			
+//			System.out.println(e);
+//		}
+//		
+//	
+//	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -74,27 +152,24 @@ public class LoginServlet extends HttpServlet {
 					request.getRequestDispatcher("member.jsp").forward ( request, response );
 					
 				} else if ( user.getUserRole().equals ( "Admin" ) ) {
+					request.setAttribute("name",user.getUserName());
+					request.setAttribute("email", user.getUserEmail());
 					
-					request.getRequestDispatcher("AdminHomePage.jsp").forward ( request, response );
+					System.out.println(user.getUserEmail()+" "+user.getUserName());
+					request.getRequestDispatcher("admin.jsp").forward ( request, response );
+					/*int b=1;
+					if(b==1) {
+						
+						request.setAttribute("mm", b);
+						
+						RequestDispatcher rd=getServletContext().getRequestDispatcher("/admin.jsp");
+						rd.forward(request, response);
+					}*/
 					
 				} else {
 					
 					//login_object.manageCredits(user.getUserId());
 					
-					
-					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
-					  // LocalDateTime now = LocalDateTime.now();  
-					
-					
-					 // Parses the date
-			        LocalDate dt = LocalDate.now();
-			  
-			       String temp =  dtf.format(dt);
-			        // Prints the day
-			        System.out.println(dt.getDayOfWeek());
-			        
-					
-					//RequestDispatcher rd=request.getRequestDispatcher("ManagerHomePage.jsp");
 					RequestDispatcher rd=request.getRequestDispatcher("manager.jsp");
 					rd.forward(request, response);
 
@@ -123,5 +198,7 @@ public class LoginServlet extends HttpServlet {
 		
 	
 	}
+	
 
+	
 }
