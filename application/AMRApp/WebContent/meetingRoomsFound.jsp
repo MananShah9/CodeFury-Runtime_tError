@@ -23,6 +23,9 @@ function highlightMeetingRoom()
 	let meetingName = document.querySelector('.card-header').getAttribute('data-name')
 	
 	document.getElementById("meetingRoomName").value=meetingName;
+	console.log(document.getElementById("meetingRoomName").value);
+	console.log(meetingName);
+	console.log("------")
 	document.querySelector('.card').style.border = "thick solid black"
 	
 	
@@ -53,7 +56,7 @@ function highlightMeetingRoom()
 	
             <div class="col-lg-4 col-xs-6 col-sm-6">
                 <div onclick="highlightMeetingRoom()" class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                    <div data-name=<%= meetingRoom.getRoomName() %> class="card-header">
+                    <div data-name="<%= meetingRoom.getRoomName() %>" class="card-header">
                     	<%= meetingRoom.getRoomName() %>
                     </div>
                     <div class="card-body">
