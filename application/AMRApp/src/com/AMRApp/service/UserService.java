@@ -1,5 +1,10 @@
 package com.AMRApp.service;
-
+/**
+ * @author Shivani Sharma
+ * @author Ananya Dwivedi
+ * @author Dharmesh Soni
+ *
+ */
 import com.AMRApp.beans.User;
 import com.AMRApp.dao.UserDAOInterface;
 import com.AMRApp.factory.UserDAOFactory;
