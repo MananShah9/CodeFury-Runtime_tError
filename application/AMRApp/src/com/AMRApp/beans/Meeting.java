@@ -17,7 +17,7 @@ public class Meeting {
 	private String startTime;
 	private String endTime;
 	private String meetingType;
-	private List<String> meetingMembers;
+	
 	
 	//non-parameterized constructor
 	public Meeting() {
@@ -26,7 +26,7 @@ public class Meeting {
 	
 	//initializing members
 	public Meeting(int meetingId, String meetingTitle, int organiserId, String meetingDate, String startTime,
-			String endTime, String meetingType, List<String> meetingMembers) {
+			String endTime, String meetingType) {
 		this.meetingId = meetingId;
 		this.meetingTitle = meetingTitle;
 		this.organiserId = organiserId;
@@ -34,7 +34,6 @@ public class Meeting {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.meetingType = meetingType;
-		this.meetingMembers = meetingMembers;
 	}
 
 	
@@ -95,26 +94,20 @@ public class Meeting {
 		this.meetingType = meetingType;
 	}
 
-	public List<String> getMeetingMembers() {
-		return meetingMembers;
-	}
-
-	public void setMeetingMembers(List<String> meetingMembers) {
-		this.meetingMembers = meetingMembers;
-	}
+	
 
 	//overriding toString()
 	@Override
 	public String toString() {
 		return "Meeting [meetingId=" + meetingId + ", meetingTitle=" + meetingTitle + ", organiserId=" + organiserId
 				+ ", meetingDate=" + meetingDate + ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", meetingType=" + meetingType + ", meetingMembers=" + meetingMembers + "]";
+				+ ", meetingType=" + meetingType +  "]";
 	}
 
 	//overriding equals() and hashcode()
 	@Override
 	public int hashCode() {
-		return Objects.hash(endTime, meetingDate, meetingId, meetingMembers, meetingTitle, meetingType, organiserId,
+		return Objects.hash(endTime, meetingDate, meetingId, meetingTitle, meetingType, organiserId,
 				startTime);
 	}
 
@@ -128,7 +121,7 @@ public class Meeting {
 			return false;
 		Meeting other = (Meeting) obj;
 		return Objects.equals(endTime, other.endTime) && Objects.equals(meetingDate, other.meetingDate)
-				&& meetingId == other.meetingId && Objects.equals(meetingMembers, other.meetingMembers)
+				&& meetingId == other.meetingId
 				&& Objects.equals(meetingTitle, other.meetingTitle) && Objects.equals(meetingType, other.meetingType)
 				&& organiserId == other.organiserId && Objects.equals(startTime, other.startTime);
 	}

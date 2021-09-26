@@ -54,7 +54,7 @@ function highlightMeetingRoom()
                     </div>
                     <div class="card-body">
                         <h6 class="card-title" data-capacity=<%= meetingRoom.getRoomCapacity() %>><b>Seating Capacity: <%= meetingRoom.getRoomCapacity() %></b></h6>
-                        <p><%= meetingRoom.getRoomPerHourCost() %></p>
+                        <p>Room Per Hour Cost : <%= meetingRoom.getRoomPerHourCost() %></p>
 			
 			<p class="card-text" data-ratings=<%= meetingRoom.getRoomRating() %>>Ratings: </p>
 			

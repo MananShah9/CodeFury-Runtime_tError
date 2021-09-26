@@ -57,8 +57,16 @@ public class OrganizeMeetingServlet extends HttpServlet {
 		ManagerOrganizeServiceInterface mOrganizeService = new ManagerFactory().getServiceInstanceOrganize();
 		ArrayList<MeetingRoom> mlist=mOrganizeService.listValidMeetingRooms(m,meetingMembers.length,durationHours);
 		
+		if(mlist.isEmpty())
+		{
+			 RequestDispatcher rd = request.getRequestDispatcher("noRoomsFound.jsp");
+		        rd.forward(request, response);
+		}
+		
 		for (MeetingRoom mr1 : mlist)
 		System.out.println(mr1);
+		
+		
         session.setAttribute("meetingRoomList",mlist);
         session.setAttribute("meetingInfo",m);
         session.setAttribute("meetParticipants",temp);
