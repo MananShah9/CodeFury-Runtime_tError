@@ -5,9 +5,13 @@ function validateMeetingType()
 	if(meetingType=="")
 		{
 			document.getElementById("errorMeetingType").innerHTML = "Kindly select the meeting type!"
+				document.getElementById("submitButton").disabled = true;
+
 		}
 	else{
 		document.getElementById("errorMeetingType").innerHTML = ""
+			document.getElementById("submitButton").disabled = false;
+
 	}
 	
 }
@@ -19,9 +23,13 @@ function validateMeetingTitle(){
 	if(meetingTitle=="")
 		{
 		document.getElementById("errorMeetingTitle").innerHTML = "Kindly give the meeting title!"
+			document.getElementById("submitButton").disabled = true;
+
 		}
 	else{
 		document.getElementById("errorMeetingTitle").innerHTML = ""
+			document.getElementById("submitButton").disabled = false;
+
 	}
 	
 }
@@ -36,9 +44,13 @@ function validateMeetingDate(){
 	   var now = new Date();
 	   if (selectedDate < now) {
 		   document.getElementById("errorMeetingDate").innerHTML = "Date must be in the future!"
+				document.getElementById("submitButton").disabled = true;
+
 	   }
 	   else{
 		   document.getElementById("errorMeetingDate").innerHTML = ""
+				document.getElementById("submitButton").disabled = false;
+
 	   }
 }
 
@@ -66,6 +78,8 @@ function validateTime(){
 
 	if (validationFailed) {
 		document.getElementById('timeError').innerHTML = 'Start time should always be less than end time!';
+		document.getElementById("submitButton").disabled = true;
+
 	}
 	
 	//------------------Display the duration of meeting---------------------------
@@ -99,7 +113,13 @@ function validateTime(){
 
 	if (!validationFailed)
 	{
-		document.getElementById("durationHrsMin").innerHTML = durationHrsMin
+		document.getElementById("durationHrsMin").innerHTML = durationHrsMin;
+		document.getElementById("submitButton").disabled = false;
+
+	}
+	else{
+		document.getElementById("submitButton").disabled = true;
+
 	}
 	
 }
@@ -119,10 +139,14 @@ function validateTime(){
 		
 		if (count < 1){
 			document.getElementById("membersContainer").innerHTML = "Select atleast a Member!"
+				document.getElementById("submitButton").disabled = true;
+
 		}
 		else
 		{
 			document.getElementById("membersContainer").innerHTML = ""
+				document.getElementById("submitButton").disabled = false;
+
 		}
 	
 
@@ -145,12 +169,25 @@ function checkMembersAddedOrNot(event)
 		
 		if (count < 1){
 			alert("Kindly select the Meeting Members!")
+						document.getElementById("submitButton").disabled = true;
+
 			return false;
 		}
 		else
 		{
 			document.getElementById('organizeMeetingForm').submit()
+						document.getElementById("submitButton").disabled = false;
+
+
 			return true;
 		}
 	
+}
+function validateAll(){
+	validateMeetingType();
+	validateMeetingTitle();
+	validateMeetingDate();
+	validateTime();
+	addAtleastOne();
+	checkMembersAddedOrNot();
 }

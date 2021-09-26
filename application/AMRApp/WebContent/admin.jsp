@@ -17,7 +17,12 @@
   display: inline-block;
   font-size: 16px;}
   </style>
+<%  out.println( session.getAttribute ( "role" ));
+if ( session.getAttribute ( "role" ) == null ) {
+    response.sendRedirect("login.jsp");
+   
 
+}  %>
 </head>
 
 <body>

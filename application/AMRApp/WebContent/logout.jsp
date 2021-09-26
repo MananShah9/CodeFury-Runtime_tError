@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% session.invalidate(); %>
+<% session.invalidate(); 
+session.removeAttribute("role");
+
+%>
 </body>
 </html>

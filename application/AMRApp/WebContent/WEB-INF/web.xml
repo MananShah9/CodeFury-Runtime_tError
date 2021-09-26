@@ -10,6 +10,9 @@
    <servlet-class>com.AMRApp.controller.servletMondayRenewal</servlet-class>  
    <load-on-startup>1</load-on-startup>  
   </servlet>  
-  
+  <error-page>
+    <error-code>500</error-code>
+    <location>/login.jsp</location>
+	</error-page>
   
 </web-app>

@@ -22,8 +22,6 @@ body {
             <div class="timeline-text">
                 <div class="initial">Automates the procedure of booking a </div>
                 <div class="name">MEETING ROOM</div>
-                <div class="cover-info">Employees can search &
-                    book based on their requirements.</div>
                 <div class="cover-info">Happy Meeting!</div>
             </div>
         </div>

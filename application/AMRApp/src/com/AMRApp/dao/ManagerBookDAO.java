@@ -142,7 +142,9 @@ con=ConnectionManager.getConnection();
 		con=ConnectionManager.getConnection();
 
 	
-    
+    System.out.println(m.toString());
+    System.out.println(meetingRoomName);
+    System.out.println("+++++++++----------------+++++++++++++++++");
     try {
     	
     	int durationHours=Integer.parseInt(m.getEndTime().substring(0,2))-Integer.parseInt( m.getStartTime().substring(0,2));

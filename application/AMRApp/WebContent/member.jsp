@@ -18,6 +18,10 @@
 <head>
   <title>Member</title>
   <link rel="stylesheet" href="css/admin.css">
+  <% if ( session.getAttribute ( "role" ) == null ) {
+    response.sendRedirect("login.jsp");
+
+}  %>
 </head>
 
 <body>

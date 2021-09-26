@@ -10,6 +10,10 @@
 <title>Welcome to AutomatedBooking</title>
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/meetingRoomsFound.css">
+<% if ( session.getAttribute ( "role" ) == null ) {
+    response.sendRedirect("login.jsp");
+
+}  %>
 <style>
 
 </style>

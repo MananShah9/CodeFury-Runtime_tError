@@ -18,6 +18,10 @@
 <head>
   <title>Manager</title>
   <link rel="stylesheet" href="css/admin.css">
+  <% if ( session.getAttribute ( "role" ) == null ) {
+    response.sendRedirect("login.jsp");
+
+}  %>
 </head>
 
 <body>
@@ -32,7 +36,7 @@
 <%
 			int userId=(int)session.getAttribute("userId");
 			ManagerHomePageServiceInterface s= new ManagerFactory().getServiceInstanceHomePage();
-			User user = s.ManagerInfo(userId);	 
+			User user = s.ManagerInfo(userId);				 
 	%>
  
 	<jsp:include page="managerSidebar.jsp"/>

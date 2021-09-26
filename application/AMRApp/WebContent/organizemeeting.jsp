@@ -13,7 +13,13 @@
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <title>Organize Meeting</title>
 
+<%System.out.println(session.getAttribute ( "role" ));
+System.out.println("snjdhdsdhahdahsdhadbhbhb");
+if ( session.getAttribute ( "role" ) == null ) {
+	
+    response.sendRedirect("login.jsp");
 
+}  %>
     </head>
     
     <script>
@@ -69,6 +75,7 @@
     var users;
      
     </script>
+        <script type="text/javascript" src="js/validate.js"></script>
 
     <body onload="getUserSuggestions()">
         <jsp:include page="header.jsp" />
@@ -158,7 +165,7 @@
                                 data-bs-target="#addMembersModal">
                                 Add Members
                             </button>
-                            <button onclick="checkMembersAddedOrNot(event)" class="btn btn-success" type="submit">Search for Available Rooms</button>
+                            <input disabled onclick="checkMembersAddedOrNot(event)" id="submitButton"  class="btn btn-success" type="submit" value="Search Rooms"></button>
 							<br />
                             <!-- Modal -->
                             <div class="modal fade" id="addMembersModal" tabindex="-1" aria-labelledby="addMembersModal"
@@ -198,7 +205,6 @@
             </div>
         </form>
         <jsp:include page="footer.jsp" />
-        <script type="text/javascript" src="js/validate.js"></script>
     </body>
 
     </html>
