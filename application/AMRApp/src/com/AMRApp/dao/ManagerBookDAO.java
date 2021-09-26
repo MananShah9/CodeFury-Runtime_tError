@@ -26,6 +26,7 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 	public void storeUser(ArrayList<String> memberId, int meetingId) {
 		try {
 
+			System.out.println("in DAO->storeUser");
 			con = ConnectionManager.getConnection();
 			
 			pList = con.prepareStatement("INSERT INTO MeetingsandMembers (meetingId, memberId) VALUES(?,?)");
@@ -63,11 +64,13 @@ public class ManagerBookDAO implements ManagerBookDAOInterface{
 			e.printStackTrace();
 			
 		}
-		
+
+		System.out.println("out of DAO->storeUser");
 	}
 
 	@Override
 	public int storeMeeting(Meeting m) {
+		System.out.println("in DAO->storeMeeting");
 		int id=0;
 		try {
 
@@ -106,12 +109,18 @@ con=ConnectionManager.getConnection();
 			return -1;
 		}
 
+		System.out.println("out of DAO->storeMeeting");
 		return id;
 	}
 
 	@Override
 	public void storeBookingInfo(Meeting m, String meetingRoomName, int managerId) 
 	{
+		System.out.println("in DAO->storeBookingInfo");
+		System.out.println(m.toString());
+		System.out.println(meetingRoomName);
+		System.out.println(managerId);
+
 		con=ConnectionManager.getConnection();
 		try {
 			
@@ -134,6 +143,7 @@ con=ConnectionManager.getConnection();
 
 			System.out.println(e);
 		}
+		System.out.println("out of DAO->storeBookingInfo");
 		
 	}
 
