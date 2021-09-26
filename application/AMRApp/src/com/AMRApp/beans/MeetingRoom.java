@@ -1,6 +1,13 @@
 package com.AMRApp.beans;
 import java.util.*;
 
+/**
+ * @author Shivani Sharma
+ * @author Ananya Dwivedi
+ * @author Dharmesh Soni
+ *
+ */
+
 public class MeetingRoom {
 	private String roomName;
 	private int roomCapacity;
