@@ -181,8 +181,8 @@
 	
 	                                        </div>
 	                                        <div class="modal-footer">
-	                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-	                                            <button onclick="addAtleastOne(event)" type="submit" class="btn btn-dark">Save</button>
+	                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save</button>
+	                                            
 	                                        </div>
                                       
                                     </div>
