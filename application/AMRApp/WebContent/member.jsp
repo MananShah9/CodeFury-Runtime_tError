@@ -60,7 +60,7 @@
 				  <thead>
 				    <tr>
 				      <th scope="col">Meeting Name</th>
-				      <th scope="col">Meeting Room</th>
+				      <th scope="col">Meeting ID</th>
 				      <th scope="col">Start Date</th>
 				      <th scope="col">Start Time</th>
 				      <th scope="col">End Time</th>
@@ -76,9 +76,10 @@
 		List<Meeting> listOfMeetings= s.listMemberMeeting(userId);
 	
 		for(Meeting m : listOfMeetings) {
+			System.out.println(m.toString());
 		%>
 				    <tr>
-				     <th scope="row"><%= m.getMeetingTitle() %></th>
+				     <td scope="row"><%= m.getMeetingTitle() %></td>
 				    <td><%= m.getMeetingId() %></td>
 					<td><%= m.getMeetingDate() %></td>
 					<td><%= m.getStartTime() %></td>
@@ -89,6 +90,7 @@
 				  </tbody>
 				</table>
 	    	</div>
+	    	<a href="feedback.jsp">FeedBack</a>
 	    </section>
 	  </main>
 </body>

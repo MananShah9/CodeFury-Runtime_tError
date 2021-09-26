@@ -58,7 +58,7 @@
 				  <thead>
 				    <tr>
 				      <th scope="col">Meeting Name</th>
-				      <th scope="col">Meeting Room</th>
+				      <th scope="col">Meeting ID</th>
 				      <th scope="col">Start Date</th>
 				      <th scope="col">Start Time</th>
 				      <th scope="col">End Time</th>

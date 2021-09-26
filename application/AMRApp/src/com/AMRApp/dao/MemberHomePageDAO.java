@@ -37,10 +37,10 @@ public class MemberHomePageDAO implements MemberHomePageDAOInterface {
 				m=new Meeting();
 				m.setMeetingId(rs.getInt(1));
 				m.setMeetingTitle(rs.getString(2));				
-				m.setMeetingDate(rs.getString(3));
-				m.setStartTime(rs.getString(4));
-				m.setEndTime(rs.getString(5));
-				m.setMeetingType(rs.getString(6));
+				m.setMeetingDate(rs.getString(4));
+				m.setStartTime(rs.getString(5));
+				m.setEndTime(rs.getString(6));
+				m.setMeetingType(rs.getString(7));
 				mlist.add(m);
 			}
 		} catch (SQLException e) {

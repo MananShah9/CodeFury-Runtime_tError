@@ -31,7 +31,6 @@ foreign key (meetingRoomName) references MeetingRoom(meetingRoomName) ON DELETE 
 );
 
 
-
 //Below tables are just 0n Trial Basis:
 
 CREATE table MeetingsAndTheirCorrespondingRooms(meetingId int, meetingRoomName varchar(60), 
