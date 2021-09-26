@@ -1,6 +1,5 @@
 function validateCheckboxes(event){
 	
-	event.preventDefault()
     const checkboxes = document.querySelectorAll("input[type=checkbox]");
 
 	var count = 0;
@@ -13,9 +12,13 @@ function validateCheckboxes(event){
 	
 	if (count < 2){
 		document.getElementById("checkboxSelectError").innerHTML = "Select atleast 2 Amenities!"
+			document.getElementById("submitButton").disabled = true;
+
 	}
 	else
 	{
 		document.getElementById("checkboxSelectError").innerHTML = ""
+			document.getElementById("submitButton").disabled = false;
+
 	}
 }
