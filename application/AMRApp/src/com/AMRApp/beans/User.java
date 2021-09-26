@@ -1,4 +1,10 @@
 package com.AMRApp.beans;
+/**
+ * @author Shivani Sharma
+ * @author Ananya Dwivedi
+ * @author Dharmesh Soni
+ *
+ */
 
 import java.util.Objects;
 
