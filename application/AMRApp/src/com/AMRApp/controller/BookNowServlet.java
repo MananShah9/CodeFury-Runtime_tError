@@ -3,6 +3,7 @@ package com.AMRApp.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +52,8 @@ public class BookNowServlet extends HttpServlet {
 		
 	//	mBook.saveBookingInfo(mlist,m);
 		
-		
+		RequestDispatcher rd=request.getRequestDispatcher("ThanksForOrganizing.jsp");
+		rd.forward(request, response);
 		
 		
 		

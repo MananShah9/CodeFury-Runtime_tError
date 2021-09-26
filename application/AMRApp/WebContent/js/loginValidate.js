@@ -1,17 +1,6 @@
-//---------------Validating username----------------------------
+//---------------Validating Password----------------------------
 
-function validateUsername()
-{
-	let username = document.getElementById("username").value
-	if(username == ""){
-		document.getElementById("errorUsername").innerHTML = "Username can't be Empty!"
-	}
-	else{
-		document.getElementById("errorUsername").innerHTML = ""
-	}
-}
 
-//---------------Validating password-----------------------------
 function validatePassword()
 {
 	
@@ -23,6 +12,10 @@ function validatePassword()
 		document.getElementById("errorPassword").innerHTML = "Password must be atleast 8 characters long!"
 	}
 	else{
+		console.log("here")
 		document.getElementById("errorPassword").innerHTML = ""
+			document.getElementById("loginForm").submit();
 	}
 }
+
+

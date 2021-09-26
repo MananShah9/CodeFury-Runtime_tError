@@ -16,7 +16,7 @@
 <html>
 
 <head>
-  <title>Manager</title>
+  <title>Member</title>
   <link rel="stylesheet" href="css/admin.css">
 </head>
 
@@ -31,13 +31,15 @@
 <!-- -----Get the Meeting details organized by the Logged In Manager---- -->
 <%
 			int userId=(int)session.getAttribute("userId");
-			ManagerHomePageServiceInterface s= new ManagerFactory().getServiceInstanceHomePage();
-			User user = s.ManagerInfo(userId);	 
+			MemberHomePageServiceInterface s= new MemberHomePageService();
+			//User user = s.MemberInfo(userId);	 
 	%>
  
-	<jsp:include page="managerSidebar.jsp"/>
+ 
+ 
+	<jsp:include page="memberSidebar.jsp"/>
 	  <main>
-	  	<h1>Manager Dashboard</h1>
+	  	<h1>Member Dashboard</h1>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	      <span style="float:right; margin-top:-8%; font-size: 13px;">
 		  	<a href="home.jsp" onclick="logout()">
@@ -67,7 +69,7 @@
 		// --------getting the details of scheduled meetings-------
 	
 		
-		List<Meeting> listOfMeetings= s.listManagerMeeting(userId);
+		List<Meeting> listOfMeetings= s.listMemberMeeting(userId);
 	
 		for(Meeting m : listOfMeetings) {
 		%>
@@ -83,7 +85,6 @@
 				  </tbody>
 				</table>
 	    	</div>
-	    	<a href="organizemeeting.jsp">Organize Meeting</a>
 	    </section>
 	  </main>
 </body>

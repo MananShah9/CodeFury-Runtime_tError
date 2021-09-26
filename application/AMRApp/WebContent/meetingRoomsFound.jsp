@@ -54,13 +54,13 @@ function highlightMeetingRoom()
                     </div>
                     <div class="card-body">
                         <h6 class="card-title" data-capacity=<%= meetingRoom.getRoomCapacity() %>><b>Seating Capacity: <%= meetingRoom.getRoomCapacity() %></b></h6>
-                        <p>YAHA KUCH NAYA AAYEGA</p>
+                        <p><%= meetingRoom.getRoomPerHourCost() %></p>
 			
 			<p class="card-text" data-ratings=<%= meetingRoom.getRoomRating() %>>Ratings: </p>
 			
 			<% for(int j=0;j<meetingRoom.getRoomRating();j++){ %>
 
-                        	<i class="fa fa-star"></i>
+                        	<span class="fa fa-star"></span>
 			
 			<% } %>
 
@@ -73,7 +73,7 @@ function highlightMeetingRoom()
 	</div>
 </div>
 <input type="hidden" id="meetingRoomName" name="meetingRoomName"/>
-<input type="submit" style="float:right; margin-right: 25px; "  class="btn btn-success" id="organizeMeeting">ORGANIZE
+<input type="submit" style="float:right; margin-right: 25px; "  class="btn btn-success" id="organizeMeeting">
 	
 	<jsp:include page="footer.jsp"/>
 	<script type="text/javascript" src="js/meetingRoomsFound.js"></script>
